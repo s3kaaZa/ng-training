@@ -11,11 +11,11 @@ import { InfoCompanyComponent } from './info-company/info-company.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatSelectModule} from '@angular/material/select';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
