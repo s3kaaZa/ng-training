@@ -1,0 +1,16 @@
+<div class="input-wrapper">
+    <pre class="input-title">(input)="inputHandlerPrimary($event)"</pre>
+    <input matInput placeholder="{{ inputPlaceholder }}" value="" (input)="inputHandlerPrimary($event)">
+    <span>Your text: {{ inputTextPrimary }}</span>
+</div>
+<div class="input-wrapper">
+    <pre class="input-title">#inputPrimary</pre>
+    <input matInput placeholder="{{ inputPlaceholder }}" value="" #inputPrimary (input)="inputHandlerSecondary(inputPrimary.value)">
+    <span>Your text: {{ inputTextSecondary }}</span>
+</div>
+
+<div class="input-wrapper">
+    <pre class="input-title">[(ngModel)]="inputTextThird"</pre>
+    <input matInput placeholder="{{ inputPlaceholder }}" value="" [(ngModel)]="inputTextThird">
+    <span>Your text: {{ inputTextThird }}</span>
+</div>
