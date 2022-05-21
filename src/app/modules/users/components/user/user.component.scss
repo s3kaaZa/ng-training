@@ -1,0 +1,31 @@
+h2 {
+  text-align: center;
+  margin: .5rem 1rem;
+}
+
+.user-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .user-card {
+    width: 300px;
+    margin: .5rem 1rem;
+  }
+}
+
+.button-container {
+  text-align: center;
+
+  .button {
+    margin: 1rem;
+  }
+
+  .button:first-child {
+    margin-left: 0;
+  }
+
+  .button:last-child {
+    margin-right: 0;
+  }
+}

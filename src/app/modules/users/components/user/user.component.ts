@@ -1,15 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  templateUrl: './user.component.html', 
+  styleUrls: ['./user.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  }
 
   ngOnInit(): void {
   }
@@ -60,5 +61,10 @@ export class UserComponent implements OnInit {
 
   hideHiddenCard() {
     this.isHidden = !this.isHidden;
+  }
+
+  get runChangeDetection() {
+    console.log('Checking the view');
+    return true;
   }
 }
