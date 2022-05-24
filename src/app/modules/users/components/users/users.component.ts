@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { IUser } from 'src/app/interfaces/user';
 import { UserComponent } from 'src/app/modules/shared/components/user/user.component';
 import { DataService } from '../../services/service/data.service';
