@@ -5,15 +5,17 @@
     <hr>
 
     <div class="user-cards">
-        <app-user
-            #userCard
-            *ngFor="let user of users" 
-            [user]="user"
-            [deactivatedAge]="deactivatedAge"
-            [isShowUsersNgIf]="isShowUsersNgIf"
-            [hidden]="isShowHiddenUsers && !user.activated"
-            (sendUser)="logUser(user)">
-        </app-user>
+        <ng-container *ngFor="let user of users">
+            <app-user
+                #userCard
+                [user]="user"
+                *ngIf="!isShowUsersNgIf || (user.activated || this.user.age <= this.deactivatedAge)"
+                [deactivatedAge]="deactivatedAge"
+                [isShowUsersNgIf]="isShowUsersNgIf"
+                [hidden]="isShowHiddenUsers && !user.activated"
+                (sendUser)="logUser(user)">
+            </app-user>
+        </ng-container>
     </div>
     
     <hr>

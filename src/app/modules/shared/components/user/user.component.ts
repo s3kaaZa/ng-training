@@ -32,8 +32,4 @@ export class UserComponent implements OnInit {
   checkUserAge(): boolean {
     return this.user.age >= this.deactivatedAge;
   }
-
-  showUser(): boolean {
-    return this.user.activated || !this.checkUserAge();
-  }
 }

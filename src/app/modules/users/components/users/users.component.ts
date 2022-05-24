@@ -34,13 +34,6 @@ export class UsersComponent implements OnInit {
 
   showActivatedUsersNgIf(): void {
     this.isShowUsersNgIf = !this.isShowUsersNgIf;
-
-/*     if (this.isActivatedUsers){
-      this.users = this.dataService.getActivatedUsers(); 
-    } else {
-      this.users = this.dataService.getAllUsers();       
-    }
- */  
   }
 
   showActivatedUsersHidden(): void {
