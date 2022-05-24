@@ -36,4 +36,8 @@ export class DataService {
   getActivatedUsers(): IUser[] {
     return this.users.filter(user => user.activated || user.age < 14);
   }
+
+  log(user: IUser) {
+    console.log(user)
+  }
 }

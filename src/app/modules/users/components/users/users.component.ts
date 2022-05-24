@@ -56,6 +56,6 @@ export class UsersComponent implements OnInit {
   }
 
   logUser(user: IUser) {
-    console.log(user);
+    this.dataService.log(user);
   }
 }
