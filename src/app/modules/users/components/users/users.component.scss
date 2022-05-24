@@ -1,0 +1,29 @@
+.users {
+  h2 {
+    text-align: center;
+  }
+
+  .user-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .button-container {
+    text-align: center;
+
+    button {
+      margin: 0 1rem;
+      line-height: 17px;
+    }
+
+    .button:first-child {
+      margin-left: 0;
+    }
+
+    .button:last-child {
+      margin-right: 0;
+    }
+  }
+}

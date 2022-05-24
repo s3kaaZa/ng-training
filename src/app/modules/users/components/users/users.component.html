@@ -1,1 +1,42 @@
-<p>users works!</p>
+<div class="users">
+    <h2>{{ usersHeader }}</h2>
+
+    <hr>
+    <hr>
+
+    <div class="user-cards">
+        <app-user
+            #userCard
+            *ngFor="let user of users" 
+            [user]="user"
+            [deactivatedAge]="deactivatedAge"
+            [isShowUsersNgIf]="isShowUsersNgIf"
+            [hidden]="isShowHiddenUsers && !user.activated"
+            (sendUser)="logUser(user)">
+        </app-user>
+    </div>
+    
+    <hr>
+    <hr>
+    
+    <div class="button-container">
+        <button 
+            mat-stroked-button color="primary" 
+            class="button"
+            (click)="showActivatedUsersNgIf()">
+            Hide / Show <br> *ngIf
+        </button>
+        <button 
+            mat-stroked-button color="warn" 
+            class="button"
+            (click)="showActivatedUsersHidden()">
+            Hide / Show <br> [hidden]
+        </button>
+        <button 
+            mat-stroked-button
+            class="button"
+            (click)="showActivatedUsersView()">
+            Hide / Show <br> @ViewChild
+        </button>
+    </div>
+</div>

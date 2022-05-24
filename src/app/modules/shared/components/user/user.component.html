@@ -1,1 +1,31 @@
-<p>user works!</p>
+<mat-card class="card" *ngIf="!isShowUsersNgIf || showUser()">
+    <mat-card-title>{{ user.name }}</mat-card-title>
+
+    <div class="user-name">
+        <span class="user-name-title">Name: </span>{{ user.name }}
+    </div>
+
+    <div class="user-age">
+        <span class="user-age-title">Age: </span>{{ user.age }}
+    </div>
+
+    <div class="user-is-activated">
+        <span class="user-is-activated-title">Activated: </span>{{ user.activated }}
+    </div>
+    
+    <button 
+        mat-stroked-button color="warn" 
+        [disabled]="user.age <= deactivatedAge || !user.activated" 
+        (click)="toggleCard(user)">
+        Deactivate
+    </button>
+
+    <button 
+        mat-stroked-button
+        class="log-button"
+        (click)="sendOutgoingEvent(user)">
+        Log
+    </button>
+</mat-card>
+
+

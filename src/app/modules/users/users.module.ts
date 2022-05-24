@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './components/user/user.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { UsersComponent } from './components/users/users.component';
-
-
+import { SharedModule } from '../shared/shared.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    UserComponent,
     UsersComponent
   ],
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonModule
+    SharedModule,
+    MatButtonModule,
   ],
   exports: [
-    UserComponent
+    UsersComponent
   ]
 })
 export class UsersModule { }
