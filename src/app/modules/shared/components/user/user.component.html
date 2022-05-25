@@ -1,31 +1,30 @@
 <mat-card class="card">
-    <mat-card-title>{{ user.name }}</mat-card-title>
-
-    <div class="user-name">
-        <span class="user-name-title">Name: </span>{{ user.name }}
-    </div>
-
-    <div class="user-age">
-        <span class="user-age-title">Age: </span>{{ user.age }}
-    </div>
-
-    <div class="user-is-activated">
-        <span class="user-is-activated-title">Activated: </span>{{ user.activated }}
-    </div>
-    
-    <button 
-        mat-stroked-button color="warn" 
-        [disabled]="user.age <= deactivatedAge || !user.activated" 
-        (click)="toggleCard(user)">
-        Deactivate
-    </button>
-
-    <button 
-        mat-stroked-button
-        class="log-button"
-        (click)="sendOutgoingEvent(user)">
-        Log
-    </button>
+    <mat-card-header>
+        <mat-card-title>Shiba Inu</mat-card-title><span class="card-title-additionaly">Age: {{ user.age }}</span>
+    </mat-card-header>
+    <img mat-card-image src="{{ user.imageUrl }}" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item>ID: {{ user.id }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>CompanyName: {{ user.companyName }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Department: {{ user.department }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Gender: {{ user.gender }}</mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <button _ngcontent-lrj-c142="" mat-icon-button="" aria-label="heart"
+        class="mat-focus-indicator mat-icon-button mat-button-base _mat-animation-noopable"> <!-- color="warn" class="mat-warn -->
+        <span class="mat-button-wrapper">
+            <mat-icon _ngcontent-lrj-c142="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" 
+                aria-hidden="true" data-mat-icon-type="font"
+                >favorite
+            </mat-icon>
+        </span>
+            <span matripple="" class="mat-ripple mat-button-ripple mat-button-ripple-round">
+            </span>
+            <span class="mat-button-focus-overlay">
+            </span>
+        </button>
 </mat-card>
-
-

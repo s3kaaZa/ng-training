@@ -31,31 +31,4 @@ export class UsersComponent implements OnInit {
   getAllUsers(): void {
     this.users = this.dataService.getAllUsers();
   }
-
-  showActivatedUsersNgIf(): void {
-    this.isShowUsersNgIf = !this.isShowUsersNgIf;
-  }
-
-  showActivatedUsersHidden(): void {
-    this.isShowHiddenUsers = !this.isShowHiddenUsers;
-  }
-
-  showActivatedUsersView(): void {
-    this.users = [];
-    this.isShowUsersView = !this.isShowUsersView;
-
-    if (!this.isShowUsersView) {
-      this.getAllUsers(); 
-    } else {
-      this.userCards.forEach((userCard: UserComponent) => {
-        if (this.isShowUsersView && (userCard.user.activated || !userCard.checkUserAge())) {
-          this.users.push(userCard.user);
-        }
-      })
-    }
-  }
-
-  logUser(user: IUser) {
-    this.dataService.log(user);
-  }
 }

@@ -4,41 +4,22 @@
     <hr>
     <hr>
 
-    <div class="user-cards">
-        <ng-container *ngFor="let user of users">
-            <app-user
-                #userCard
-                [user]="user"
-                *ngIf="!isShowUsersNgIf || (user.activated || this.user.age <= this.deactivatedAge)"
-                [deactivatedAge]="deactivatedAge"
-                [isShowUsersNgIf]="isShowUsersNgIf"
-                [hidden]="isShowHiddenUsers && !user.activated"
-                (sendUser)="logUser(user)">
-            </app-user>
-        </ng-container>
-    </div>
-    
+    <mat-sidenav-container>
+        <div class="user-cards">
+            <ng-container *ngFor="let user of users">
+                <app-user #userCard [user]="user">
+                </app-user>
+            </ng-container>
+        </div>
+
+        <mat-sidenav opened mode="side" position="end">
+            <div class="sidebar-title">
+                Favorite:
+            </div>
+        </mat-sidenav>
+    </mat-sidenav-container>
+
+
     <hr>
     <hr>
-    
-    <div class="button-container">
-        <button 
-            mat-stroked-button color="primary" 
-            class="button"
-            (click)="showActivatedUsersNgIf()">
-            Hide / Show <br> *ngIf
-        </button>
-        <button 
-            mat-stroked-button color="warn" 
-            class="button"
-            (click)="showActivatedUsersHidden()">
-            Hide / Show <br> [hidden]
-        </button>
-        <button 
-            mat-stroked-button
-            class="button"
-            (click)="showActivatedUsersView()">
-            Hide / Show <br> @ViewChild
-        </button>
-    </div>
 </div>

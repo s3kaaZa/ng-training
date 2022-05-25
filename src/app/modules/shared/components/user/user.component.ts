@@ -15,21 +15,4 @@ export class UserComponent implements OnInit {
   }
 
   @Input() user!: IUser;
-  @Input() isShowUsersNgIf!: boolean;
-  @Input() isShowHiddenUsers!: boolean;
-  @Input() deactivatedAge!: number;
-
-  @Output() sendUser = new EventEmitter<IUser>();
-
-  sendOutgoingEvent(user: IUser) {
-    this.sendUser.emit(user);
-  }
-
-  toggleCard(user: IUser) {
-    this.user.activated = !this.user.activated;
-  }
-
-  checkUserAge(): boolean {
-    return this.user.age >= this.deactivatedAge;
-  }
 }
