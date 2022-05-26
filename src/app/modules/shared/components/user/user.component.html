@@ -7,7 +7,7 @@
         <mat-list>
             <mat-list-item>ID: {{ user.id }}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>CompanyName: {{ user.companyName }}</mat-list-item>
+            <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>Department: {{ user.department }}</mat-list-item>
             <mat-divider></mat-divider>
@@ -15,7 +15,8 @@
         </mat-list>
     </mat-card-content>
     <button _ngcontent-lrj-c142="" mat-icon-button="" aria-label="heart"
-        class="mat-focus-indicator mat-icon-button mat-button-base _mat-animation-noopable"> <!-- color="warn" class="mat-warn -->
+        class="mat-focus-indicator mat-icon-button mat-button-base _mat-animation-noopable"
+        (click)="sendLike()"> <!-- color="warn" class="mat-warn -->
         <span class="mat-button-wrapper">
             <mat-icon _ngcontent-lrj-c142="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" 
                 aria-hidden="true" data-mat-icon-type="font"

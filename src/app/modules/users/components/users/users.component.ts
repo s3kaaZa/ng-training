@@ -13,13 +13,9 @@ export class UsersComponent implements OnInit {
 
   @ViewChildren('userCard') userCards!: UserComponent[];
 
-  deactivatedAge: number = 18;
-  isShowUsersNgIf: boolean = false;
-  isShowHiddenUsers: boolean = false;
-  isShowUsersView: boolean = false;
+  isLiked: boolean = false;
   usersHeader: string = 'Users:';
   users: IUser[] = [];
-  activatedUsers: IUser[] = [];
 
   constructor(private dataService: DataService) {
   }
