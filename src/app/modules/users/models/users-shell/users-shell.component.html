@@ -1,0 +1,21 @@
+<!-- <div class="users-list-shell">
+    <div class="users-container">
+        <app-users-list [users]="this.users"></app-users-list>
+    </div>
+    <app-favorites [favorites]="this.favorites"></app-favorites>
+</div> -->
+
+<div class="users-wrapper">
+    <mat-sidenav-container>
+        <app-users-list class="users-container" [users]="this.users">
+        </app-users-list>
+
+        <mat-sidenav class="favorite-wrapper" opened mode="side" position="end">
+            <div class="favorite-title">
+                Favorite:
+                <app-users-list class="users-container" [users]="this.users">
+                </app-users-list>
+            </div>
+        </mat-sidenav>
+    </mat-sidenav-container>
+</div>

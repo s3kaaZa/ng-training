@@ -1,25 +1,17 @@
-<div class="users">
-    <h2>{{ usersHeader }}</h2>
-
-    <hr>
-    <hr>
-
+<app-users-shell></app-users-shell>
+<!-- <div class="users">
     <mat-sidenav-container>
         <div class="user-cards">
             <ng-container *ngFor="let user of users">
-                <app-user #userCard [user]="user">
-                </app-user>
+                <app-card #userCard [card]="user">
+                </app-card>
             </ng-container>
         </div>
 
         <mat-sidenav opened mode="side" position="end">
-            <div class="sidebar-title">
+            <div class="favorite-title">
                 Favorite:
             </div>
         </mat-sidenav>
     </mat-sidenav-container>
-
-
-    <hr>
-    <hr>
-</div>
+</div> -->

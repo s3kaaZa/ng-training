@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ICar } from 'src/app/interfaces/car';
-import { IUser } from 'src/app/interfaces/user';
+import { ICar } from '../cars/interfaces/car';
+import { IUser } from '../users/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class DataService {
 
   private cars: ICar[] = [
     {
-      "id": 101,
+      "id": "9CF8D4CC-896F-4151-A51D-DCCB0AED6067",
       "name": "Audi Q3",
       "color": "Crimson",
       "releaseYear": 2020,
@@ -17,7 +17,7 @@ export class DataService {
       "imageUrl": "https://image-server.autospot.ru/images/1/0/2/2/1/6/16007/origin/16007.webp"
     },
     {
-      "id": 102,
+      "id": "7BE32261-3D69-4FF9-A416-FBB6C371A4AB",
       "name": "Chevrolet Malibu",
       "color": "LightGreen",
       "releaseYear": 2020,
@@ -25,7 +25,7 @@ export class DataService {
       "imageUrl": "https://kolesa-uploads.ru/-/407cdca0-d13f-41b2-9c7a-e9a15ee7ab68/chevrolet-malibu-298-result.jpg"
     },
     {
-      "id": 103,
+      "id": "D827613E-87A7-4449-B70C-40D69AD62D49",
       "name": "Cadillac Escalade ESV",
       "color": "Aquamarine",
       "releaseYear": 2020,
@@ -33,7 +33,7 @@ export class DataService {
       "imageUrl": "https://avatars.mds.yandex.net/get-autoru-vos/6051311/0c17fda80cd4c80262f007dafcc0e77d/456x342n"
     },
     {
-      "id": 104,
+      "id": "FDA422B0-2A43-4FF2-948F-B9ABEA3ABA03",
       "name": "Chevrolet Corvette",
       "color": "Aquamarine",
       "releaseYear": 2020,
@@ -41,7 +41,7 @@ export class DataService {
       "imageUrl": "https://www.allcarz.ru/wp-content/uploads/2021/10/foto-corvette-c8-z06_01.jpg"
     },
     {
-      "id": 105,
+      "id": "5B518D01-605B-4186-BDCA-196F9437777C",
       "name": "Acura RLX",
       "color": "Aquamarine",
       "releaseYear": 2020,
@@ -49,7 +49,7 @@ export class DataService {
       "imageUrl": "https://kolesa-uploads.ru/-/b84eff07-d9b2-49f4-83bf-4ee9e16639a6/2016-acura-rlx-sport-hybrid-44.jpg"
     },
     {
-      "id": 106,
+      "id": "BB6ADF65-DC7E-45F8-A60B-5E37263145F7",
       "name": "Chevrolet Silverado 2500 HD Crew Cab",
       "color": "Black",
       "releaseYear": 2020,
@@ -57,7 +57,7 @@ export class DataService {
       "imageUrl": "https://img.automoto.ua/overview/chevrolet-silverado-2020-d60-huge-1588.jpg"
     },
     {
-      "id": 107,
+      "id": "1CF7C133-B83A-4E97-8869-13907031332A",
       "name": "BMW 3 Series",
       "color": "MediumSeaGreen",
       "releaseYear": 2020,
@@ -65,7 +65,7 @@ export class DataService {
       "imageUrl": "https://s.auto.drom.ru/i24198/c/photos/fullsize/bmw/3-series/bmw_3-series_542271.jpg"
     },
     {
-      "id": 108,
+      "id": "ED967C4B-439F-401B-A20D-BF36AB0F562E",
       "name": "Chrysler Pacifica",
       "color": "Aquamarine",
       "releaseYear": 2020,
@@ -73,7 +73,7 @@ export class DataService {
       "imageUrl": "https://s.auto.drom.ru/i24198/c/photos/fullsize/chrysler/pacifica/chrysler_pacifica_558740.jpg"
     },
     {
-      "id": 109,
+      "id": "AF5AAF61-55FB-4D2C-A093-73F3205EE53C",
       "name": "Chevrolet Colorado Crew Cab",
       "color": "Orange",
       "releaseYear": 2020,
@@ -81,7 +81,7 @@ export class DataService {
       "imageUrl": "https://media.ed.edmunds-media.com/chevrolet/colorado/2021/oem/2021_chevrolet_colorado_crew-cab-pickup_lt_fq_oem_1_815.jpg"
     },
     {
-      "id": 110,
+      "id": "E89AFF48-1D24-4C43-A82A-5A4B5DD9F31B",
       "name": "BMW X3",
       "color": "Fuchsia",
       "releaseYear": 2020,
@@ -89,7 +89,7 @@ export class DataService {
       "imageUrl": "https://image-server.autospot.ru/images/1/0/2/2/1/2/1239344/origin/1239344.webp"
     },
     {
-      "id": 111,
+      "id": "8D649428-E875-4A75-AA65-E8209A47B1DC",
       "name": "Acura TLX",
       "color": "LightGreen",
       "releaseYear": 2020,
@@ -97,7 +97,7 @@ export class DataService {
       "imageUrl": "https://www.allcarz.ru/wp-content/uploads/2020/05/foto-tlx-2021_01.jpg"
     },
     {
-      "id": 112,
+      "id": "074ED6EC-FCE0-4571-936F-45E3C2A7EFA5",
       "name": "Chevrolet Silverado 3500 HD Crew Cab",
       "color": "Tomato",
       "releaseYear": 2020,
@@ -105,7 +105,7 @@ export class DataService {
       "imageUrl": "https://autovogdenie.ru/wp-content/uploads/2017/09/6-min-1.jpg"
     },
     {
-      "id": 113,
+      "id": "1ED5C16B-6388-4229-A17D-5853860221CA",
       "name": "BMW 7 Series",
       "color": "DimGrey",
       "releaseYear": 2020,
@@ -113,7 +113,7 @@ export class DataService {
       "imageUrl": "https://avcdn.av.by/cargeneration/0000/5079/0376.jpeg"
     },
     {
-      "id": 114,
+      "id": "EBD61448-B354-4E77-8679-6B9A6C66FA07",
       "name": "Ford Fusion",
       "color": "Grey",
       "releaseYear": 2020,
@@ -121,7 +121,7 @@ export class DataService {
       "imageUrl": "https://www.auto-data.net/images/f9/Ford-Fusion-II-facelift-2018.jpg"
     },
     {
-      "id": 115,
+      "id": "F15A5FC7-56A7-4CF8-AEC4-1C576294EFC8",
       "name": "Buick Envision",
       "color": "SandyBrown",
       "releaseYear": 2020,
@@ -129,7 +129,7 @@ export class DataService {
       "imageUrl": "https://autoiwc.ru/images/buick/buick-envision_8.webp"
     },
     {
-      "id": 116,
+      "id": "3CD6BCEA-10AC-4ADF-A1BE-CC069125ED31",
       "name": "Audi SQ5",
       "color": "SandyBrown",
       "releaseYear": 2020,
@@ -137,7 +137,7 @@ export class DataService {
       "imageUrl": "https://media.fastestlaps.com/audi-sq5-tdi-fy.jpg?400x250m"
     },
     {
-      "id": 117,
+      "id": "2CDF1482-1708-487D-8513-BF028A9CC12E",
       "name": "Audi R8",
       "color": "RosyBrown",
       "releaseYear": 2020,
@@ -145,7 +145,7 @@ export class DataService {
       "imageUrl": "https://s1.1zoom.ru/prev/555/Audi_R8_2019_Blue_Motion_554559_600x400.jpg"
     },
     {
-      "id": 118,
+      "id": "29C448FE-6F50-4207-A129-725FD450F42F",
       "name": "Chevrolet Traverse",
       "color": "FireBrick",
       "releaseYear": 2020,
@@ -153,7 +153,7 @@ export class DataService {
       "imageUrl": "https://all-auto.org/wp-content/uploads/2020/06/Chevrolet-Traverse-2-6.jpg"
     },
     {
-      "id": 119,
+      "id": "FE4DDF0B-A7E1-4707-8FE4-80DABCB41C41",
       "name": "Acura MDX",
       "color": "Orchid",
       "releaseYear": 2020,
@@ -161,7 +161,7 @@ export class DataService {
       "imageUrl": "https://s.auto.drom.ru/i24208/c/photos/fullsize/acura/mdx/acura_mdx_709174.jpg"
     },
     {
-      "id": 120,
+      "id": "36D0D7F4-31E6-40E5-A03B-EF5116C99C99",
       "name": "INFINITI QX80",
       "color": "Orchid",
       "releaseYear": 2020,

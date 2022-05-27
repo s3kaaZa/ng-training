@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './modules/users/users.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { CarsComponent } from './modules/cars/components/cars/cars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CarsComponent,
   ],
   imports: [
     BrowserModule,
