@@ -1,4 +1,4 @@
 export enum Favorite {
-    User = 'USER',
-    Vehicle = 'VEHICLE'
+  User = 'USER',
+  Car = 'CAR'
 }

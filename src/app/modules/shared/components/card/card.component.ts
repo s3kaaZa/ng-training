@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IUser } from 'src/app/modules/users/interfaces/user';
-import { ICar } from 'src/app/modules/cars/interfaces/car';
 
 @Component({
   selector: 'app-card',
@@ -10,9 +8,9 @@ import { ICar } from 'src/app/modules/cars/interfaces/car';
 })
 export class CardComponent implements OnInit {
   @Input() imageUrl!: string;
-  @Input() entity!: IUser | ICar;
+  @Input() isLike!: boolean;
 
-  @Output() sendLike = new EventEmitter<IUser | ICar>();
+  @Output() sendToggleLike = new EventEmitter();
 
   constructor() { }
 
@@ -20,6 +18,7 @@ export class CardComponent implements OnInit {
   }
 
   toggleLike() {
-    this.sendLike.emit();
+    this.isLike = !this.isLike;
+    this.sendToggleLike.emit();
   }
 }

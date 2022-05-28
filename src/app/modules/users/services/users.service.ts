@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/user';
-import { FavoriteService } from '../../services/favorite.service';
+import { FavoriteService } from '../../shared/services/favorite.service';
+import { Favorite } from '../../shared/enums/favorite';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private favoriteUsers: IUser[] = [];
-  private users: IUser[] = [
+  private _favoriteUsers: IUser[] = [];
+  private _users: IUser[] = [
     {
       "id": "1dd55921-9835-4282-a0d3-865a5a129528",
       "companyName": "Texas Instruments Incorporated",
@@ -190,18 +191,26 @@ export class UsersService {
     }
   ];
 
-  constructor() { }
+  constructor(private favoriteService: FavoriteService) { }
 
-  getAllUsers(): IUser[] {
-    return this.users;
+  getUsers(): IUser[] {
+    return this._users;
   }
 
-  getFavorites(favoriteIds: Array<string>): IUser[] {
-    this.favoriteUsers = [];
-    this.favoriteUsers = this.users.filter(user => favoriteIds.includes(user.id))
-    console.log(this.favoriteUsers);
-    
-
-    return this.favoriteUsers;
+  getFavoriteUsers(): IUser[] {
+    return this._favoriteUsers;
   }
+
+  toggleLike(userId: string) {
+    this._favoriteUsers = [];
+
+    this.favoriteService.addToFavorite(userId, Favorite.User);
+
+    this._users.forEach(user => {
+      if (this.favoriteService.getFavorite(Favorite.User).includes(user.id)) {
+        this._favoriteUsers.push(user);
+      }
+    })         
+  }
+
 }

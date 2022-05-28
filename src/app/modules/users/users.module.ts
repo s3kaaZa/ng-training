@@ -7,13 +7,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { UsersShellComponent } from './models/users-shell/users-shell.component';
-import { UsersListComponent } from './models/users-list/users-list.component'
 
 @NgModule({
   declarations: [
     UsersComponent,
     UsersShellComponent,
-    UsersListComponent
   ],
   imports: [
     CommonModule,

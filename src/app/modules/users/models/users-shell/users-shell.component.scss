@@ -1,25 +1,14 @@
-/* .users {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.users {
+  text-align: center;
 
-  .mat-sidenav {
-    width: 320px;
-    font-size: 20px;
-    font-weight: 500;
-    text-align: center;
-
-    .favorite-title {
-      margin: 1rem;
-    }
+  .app-card {
+    text-align-last: left;
   }
-.users-container {
-    text-align: center;
+
+  .mat-list-item {
+    text-align: left;
+  }
 }
-
-} */
-
 
 .favorite-wrapper {
     width: 300px;

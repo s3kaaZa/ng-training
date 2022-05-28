@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '../../interfaces/user';
-import { Favorite } from 'src/app/modules/shared/enums/favorite';
 import { UsersService } from '../../services/users.service';
-import { FavoriteService } from 'src/app/modules/services/favorite.service';
 
 @Component({
   selector: 'app-users-shell',
@@ -12,23 +10,19 @@ import { FavoriteService } from 'src/app/modules/services/favorite.service';
 export class UsersShellComponent implements OnInit {
 
   users: IUser[] = [];
-  private favoriteIds: Array<string> = [];
+  favoriteUsers: IUser[] = [];
+  isLike: boolean = false;
 
   constructor(
-    private favoriteService: FavoriteService, 
     private usersService: UsersService
   ) { }
-  
 
   ngOnInit(): void {
-    this.users = this.usersService.getAllUsers();
+    this.users = this.usersService.getUsers();
   }
 
-  
-  addToFavorit() {
-    this.favoriteIds = this.favoriteService.getFavorites(Favorite.User);
-    console.log(this.favoriteIds);
-    this.usersService.getFavorites(this.favoriteIds)
+  toggleLike(user: IUser) {
+    this.usersService.toggleLike(user.id);
+    this.favoriteUsers = this.usersService.getFavoriteUsers();
   }
-
 }

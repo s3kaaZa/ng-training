@@ -1,21 +1,55 @@
-<!-- <div class="users-list-shell">
-    <div class="users-container">
-        <app-users-list [users]="this.users"></app-users-list>
-    </div>
-    <app-favorites [favorites]="this.favorites"></app-favorites>
-</div> -->
-
 <div class="users-wrapper">
     <mat-sidenav-container>
-        <app-users-list class="users-container" [users]="this.users">
-        </app-users-list>
+        <div class="users">
+            <ng-container *ngFor="let user of users">
+              <app-card 
+                class="app-card" 
+                [imageUrl]="user.imageUrl" 
+                [isLike]="isLike"
+                (sendToggleLike)="toggleLike(user)">
+                <div class="title">{{ user.name }}</div>
+                <div class="cardContent">
+                  <mat-list-item>ID: {{ user.id }}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Department: {{ user.department }}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Gender: {{ user.gender }}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Age: {{ user.age }}</mat-list-item>
+                </div>
+              </app-card>
+            </ng-container>
+          </div>
 
         <mat-sidenav class="favorite-wrapper" opened mode="side" position="end">
             <div class="favorite-title">
                 Favorite:
-                <app-users-list class="users-container" [users]="this.users">
-                </app-users-list>
             </div>
+
+            <div class="users">
+                <ng-container *ngFor="let user of favoriteUsers">
+                    <app-card 
+                    class="app-card" 
+                    [imageUrl]="user.imageUrl" 
+                    [isLike]="isLike"
+                    (sendToggleLike)="toggleLike(user)">
+                    <div class="title">{{ user.name }}</div>
+                    <div class="cardContent">
+                        <mat-list-item>ID: {{ user.id }}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Department: {{ user.department }}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Gender: {{ user.gender }}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Age: {{ user.age }}</mat-list-item>
+                    </div>
+                    </app-card>
+                </ng-container>
+                </div>        
         </mat-sidenav>
     </mat-sidenav-container>
 </div>

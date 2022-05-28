@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ICar } from '../cars/interfaces/car';
-import { IUser } from '../users/interfaces/user';
+import { ICar } from '../../cars/interfaces/car';
+import { IUser } from '../../users/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private cars: ICar[] = [
+  private _cars: ICar[] = [
     {
       "id": "9CF8D4CC-896F-4151-A51D-DCCB0AED6067",
       "name": "Audi Q3",
@@ -170,7 +170,7 @@ export class DataService {
     }
   ]
 
-  private users: IUser[] = [
+  private _users: IUser[] = [
     {
       "id": "1dd55921-9835-4282-a0d3-865a5a129528",
       "companyName": "Texas Instruments Incorporated",
@@ -354,10 +354,10 @@ export class DataService {
   ]
 
   getAllUsers(): IUser[] {
-    return this.users;
+    return this._users;
   }
 
   getAllCars(): ICar[] {
-    return this.cars;
+    return this._cars;
   }
 }
