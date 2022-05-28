@@ -1,0 +1,47 @@
+<div class="cars-wrapper">
+    <mat-sidenav-container>
+        <mat-sidenav-content>
+            <div class="cars">
+                <ng-container *ngFor="let car of cars">
+                    <app-card class="app-card" [imageUrl]="car.imageUrl" [isLike]="isLike"
+                        (sendToggleLike)="toggleLike(car)">
+                        <div class="title">{{ car.name }}</div>
+                        <div class="cardContent">
+                            <mat-list-item>ID: {{ car.id }}</mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>Color: {{ car.color }}</mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>Release year: {{ car.releaseYear }}</mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>Number: {{ car.number }}</mat-list-item>
+                        </div>
+                    </app-card>
+                </ng-container>
+            </div>
+        </mat-sidenav-content>
+
+        <mat-sidenav class="favorite-wrapper" opened mode="side" position="end">
+            <div class="favorite-title">
+                Favorite:
+            </div>
+
+            <div class="cars">
+                <ng-container *ngFor="let car of favoriteCars">
+                    <app-card class="app-card" [imageUrl]="car.imageUrl" [isLike]="isLike"
+                        (sendToggleLike)="toggleLike(car)">
+                        <div class="title">{{ car.name }}</div>
+                        <div class="cardContent">
+                            <mat-list-item>ID: {{ car.id }}</mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>Color: {{ car.color }}</mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>Release year: {{ car.releaseYear }}</mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>Number: {{ car.number }}</mat-list-item>
+                            </div>
+                    </app-card>
+                </ng-container>
+            </div>
+        </mat-sidenav>
+    </mat-sidenav-container>
+</div>
