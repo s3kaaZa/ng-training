@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
-    CardComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,

@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/user';
 import { FavoriteService } from '../../shared/services/favorite.service';
 import { Favorite } from '../../shared/enums/favorite';
+import { ICreateUser } from '../../create/interfaces/ICreateUser';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsersService {
+  public newUser!: IUser;
   private _favoriteUsers: IUser[] = [];
   private _users: IUser[] = [
     {
@@ -213,4 +216,17 @@ export class UsersService {
     })         
   }
 
+  createNewUser(user: ICreateUser) {
+    this.newUser.id = "D05CDF2C-1C8F-422D-8E71-E2BF3C4DD73B";
+    this.newUser.name = user.firstName + user.lastName;
+    this.newUser.age = user.age;
+    this.newUser.companyName = user.companyName;
+    this.newUser.department = user.department;
+    this.newUser.gender = false;
+    this.newUser.imageUrl = "https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg"
+
+    console.log(this.newUser);
+    
+
+  }
 }
