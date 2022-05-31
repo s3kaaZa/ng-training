@@ -7,6 +7,22 @@
 
   .mat-list-item {
     text-align: left;
+
+    .user-male, .user-female {
+      margin-left: 0.5rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 24px;
+      height: 24px;
+    }
+
+    .user-male {
+      background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/2d/Male-s%C3%ADmbolo.svg);
+    }
+    
+    .user-female {
+      background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/63/FemalePink.png);
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('users') usersButton!: ElementRef<HTMLAreaElement>;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
+  }
+
+  buttonClick() {
+    console.log(this.usersButton);
   }
 
 }

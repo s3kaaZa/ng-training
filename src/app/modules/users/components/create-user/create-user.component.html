@@ -1,0 +1,32 @@
+<form id="createUserForm" [formGroup]="createUserForm" novalidate  (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+        <mat-label>First name</mat-label>
+        <input matInput name="firstName" formControlName="firstName" type="text" placeholder="Illy" />
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Last name</mat-label>
+        <input matInput name="lastName" formControlName="lastName" type="text" placeholder="Thompson" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input matInput name="age" formControlName="age"  type="number" placeholder="Ex. 19" min="18" max="130" />
+        <span matSuffix>years</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Company</mat-label>
+        <input matInput name="company" formControlName="company" type="text" placeholder="Apple" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Department</mat-label>
+        <input matInput name="department" formControlName="department" type="text" placeholder="Information Security" />
+    </mat-form-field>
+
+    <span class="user-gender">Choose gender:
+        <mat-slide-toggle name="gender" formControlName="gender" [(ngModel)]="gender">{{ gender ? 'Male' : 'Female' }}</mat-slide-toggle><!--  ? 'Male' : 'Female' -->
+    </span>
+    
+</form>

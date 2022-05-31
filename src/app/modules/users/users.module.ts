@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersComponent } from './components/users/users.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/material.module';
 import { SharedModule } from '../shared/shared.module';
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { UsersComponent } from './components/users/users.component';
 import { UsersShellComponent } from './models/users-shell/users-shell.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { CreateUserShellComponent } from './models/create-user-shell/create-user-shell.component';
 
 @NgModule({
   declarations: [
     UsersComponent,
     UsersShellComponent,
+    CreateUserComponent,
+    CreateUserShellComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     SharedModule,
-    MatCardModule,
-    MatListModule,
-    MatButtonModule,
-    MatSidenavModule,
+    MaterialModule,
   ],
   exports: [
     UsersComponent

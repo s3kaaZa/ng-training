@@ -2,7 +2,7 @@ export interface ICreateUser {
     firstName: string,
     lastName: string,
     age: number,
-    companyName: string,
+    company: string,
     department: string,
-    //gender: boolean,
+    gender: boolean,
 }
