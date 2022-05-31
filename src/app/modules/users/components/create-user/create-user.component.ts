@@ -13,6 +13,7 @@ export class CreateUserComponent implements OnInit {
   createUserForm: FormGroup = new FormGroup({
     "firstName": new FormControl('', Validators.required),
     "lastName": new FormControl('', Validators.required),
+    "email": new FormControl('', Validators.required),
     "age": new FormControl('', [
       Validators.required,
       Validators.min(18),

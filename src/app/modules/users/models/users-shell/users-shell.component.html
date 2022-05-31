@@ -7,11 +7,13 @@
                 [imageUrl]="user.imageUrl" 
                 [isLike]="isLike"
                 (sendToggleLike)="toggleLike(user)">
-                <div class="title">{{ user.name }}</div>
+                <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
                 <div class="cardContent">
-                  <mat-list-item>ID: {{ user.id }}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
+                    <mat-list-item>ID: {{ user.id }}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>Email: {{ user.email }}</mat-list-item>
+                    <mat-divider></mat-divider>
+              <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
                   <mat-divider></mat-divider>
                   <mat-list-item>Department: {{ user.department }}</mat-list-item>
                   <mat-divider></mat-divider>
@@ -37,9 +39,11 @@
                     [imageUrl]="user.imageUrl" 
                     [isLike]="isLike"
                     (sendToggleLike)="toggleLike(user)">
-                    <div class="title">{{ user.name }}</div>
+                    <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
                     <div class="cardContent">
                         <mat-list-item>ID: {{ user.id }}</mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Email: {{ user.email }}</mat-list-item>
                         <mat-divider></mat-divider>
                         <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
                         <mat-divider></mat-divider>
