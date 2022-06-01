@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '../../services/create-user.validator';
-import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-create-user',
@@ -9,17 +8,13 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-  //public createUserForm!: FormBuilder;
-  @Input() formGroup!: FormGroup // ??? Свойство "_formBuilder" объявлено, но его значение не было прочитано
+  @Input() formGroup!: FormGroup;
 
-  public userForm: FormGroup;
+  public userForm!: FormGroup;
   public gender: boolean = false;
-  
 
-  constructor(
-    private _userService: UsersService,
-    private _formBuilder: FormBuilder
-  ) { 
+
+  constructor(private _formBuilder: FormBuilder) {
     this.userForm = _formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -27,20 +22,6 @@ export class CreateUserComponent implements OnInit {
         Validators.required,
         Validators.email,
         emailValidator(),    //(control.value.substring(control.value.indexOf('@') + 1) == 'gmail.com')
-        /* 
-        Требования к имени пользователя
-        Если при регистрации аккаунта Google или Gmail появляется ошибка "Это имя пользователя запрещено", скорее всего, имя пользователя не соответствует нашим требованиям. Они перечислены ниже.
-
-        Примечание. Псевдонимы "abuse" и "postmaster" использовать нельзя, так как они заняты для технических сообщений. Информацию об этом читайте в этих правилах.
-
-        Ограничения по длине
-        Имя пользователя может состоять из 6–30 знаков и содержать буквы, цифры и символы.
-
-        Специальные символы
-        Имя пользователя может содержать буквы латинского алфавита (a–z), цифры (0–9) и точки (.).
-        Запрещено использовать амперсанд (&), знаки равенства (=) и сложения (+), скобки (<>), запятую (,), символ подчеркивания (_), апостроф ('), дефис (-) и несколько точек подряд.
-        Имя пользователя может начинаться и заканчиваться любым разрешенным символом, кроме точки (.). В остальном точки в адресах Gmail не играют никакой роли.  
-        */
       ]],
       age: ['', [
         Validators.required,
@@ -59,10 +40,7 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { 
-    console.log('this.formGroup = ', this.formGroup);
-    console.log('this.userForm = ', this.userForm);
-    
+  ngOnInit(): void {
     this.formGroup.addControl('user', this.userForm)
   }
 }

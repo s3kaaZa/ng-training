@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-create-user-shell',
@@ -7,18 +9,19 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./create-user-shell.component.scss']
 })
 export class CreateUserShellComponent implements OnInit {
-  formGroup: FormGroup = new FormGroup({});
+  createUserForm: FormGroup = new FormGroup({});
 
-  constructor() { }
+  constructor(
+    private _router: Router,
+    private _userService: UsersService
+  ) { }
 
   ngOnInit(): void {
-    console.log('shell formGroup = ', this.formGroup);
-    
+    console.log('shell formGroup = ', this.createUserForm);
   }
 
   goToUsersPage() {
-    console.log(this);
-    
-    //this.router.navigate(["/users"]);
+    this._userService.createNewUser(this.createUserForm.value.user);    
+    this._router.navigate(["/users"]);
   }
 }

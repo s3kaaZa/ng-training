@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/material.module';
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +17,6 @@ import { CreateUserShellComponent } from './components/create-user-shell/create-
   ],
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     SharedModule,
     MaterialModule,
