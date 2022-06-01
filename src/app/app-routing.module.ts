@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateUserShellComponent } from './modules/users/models/create-user-shell/create-user-shell.component';
+import { CreateUserShellComponent } from './modules/users/components/create-user-shell/create-user-shell.component';
 import { UsersComponent } from './modules/users/components/users/users.component';
 import { CarsComponent } from './modules/cars/components/cars/cars.component';
 
