@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '../../services/create-user.validator';
 import { UsersService } from '../../services/users.service';
@@ -9,17 +9,21 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-  public createUserForm!: FormGroup;
+  //public createUserForm!: FormBuilder;
+  @Input() formGroup!: FormGroup // ??? Свойство "_formBuilder" объявлено, но его значение не было прочитано
+
+  public userForm: FormGroup;
   public gender: boolean = false;
+  
 
   constructor(
-    private _formBuilder: FormBuilder, // ??? Свойство "_formBuilder" объявлено, но его значение не было прочитано
     private _userService: UsersService,
-  ) {
-    this.createUserForm = _formBuilder.group({
-      "firstName": ['', [Validators.required]],
-      "lastName": ['', [Validators.required]],
-      "email": ['', [
+    private _formBuilder: FormBuilder
+  ) { 
+    this.userForm = _formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [
         Validators.required,
         Validators.email,
         emailValidator(),    //(control.value.substring(control.value.indexOf('@') + 1) == 'gmail.com')
@@ -38,26 +42,27 @@ export class CreateUserComponent implements OnInit {
         Имя пользователя может начинаться и заканчиваться любым разрешенным символом, кроме точки (.). В остальном точки в адресах Gmail не играют никакой роли.  
         */
       ]],
-      "age": ['', [
+      age: ['', [
         Validators.required,
         Validators.min(15),
         Validators.max(100),
       ]],
-      "company": ['', [
+      company: ['', [
         Validators.required,
         Validators.maxLength(35)
       ]],
-      "department": ['', [
+      department: ['', [
         Validators.required,
         Validators.minLength(6)
       ]],
-      "gender": ['', [Validators.required]]
+      gender: ['', [Validators.required]]
     });
   }
 
-  ngOnInit(): void { }
-
-  submit() {
-    this._userService.createNewUser(this.createUserForm.value);
+  ngOnInit(): void { 
+    console.log('this.formGroup = ', this.formGroup);
+    console.log('this.userForm = ', this.userForm);
+    
+    this.formGroup.addControl('user', this.userForm)
   }
 }
