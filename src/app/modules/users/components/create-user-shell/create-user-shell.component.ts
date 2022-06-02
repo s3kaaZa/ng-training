@@ -10,18 +10,29 @@ import { UsersService } from '../../services/users.service';
 })
 export class CreateUserShellComponent implements OnInit {
   createUserForm: FormGroup = new FormGroup({});
+  isInvalidForm: boolean = false;
 
   constructor(
     private _router: Router,
     private _userService: UsersService
   ) { }
 
-  ngOnInit(): void {
-    console.log('shell formGroup = ', this.createUserForm);
+  ngOnInit(): void { }
+
+  goToUsersPage(event: Event) {
+    if (this.createUserForm.status === 'VALID'){
+      this.isInvalidForm = false;
+      this._userService.createNewUser(this.createUserForm.value.user);    
+      this._router.navigate(["/users"]);
+    } else {
+      this.isInvalidForm = true;
+      event?.preventDefault();
+      this.showExeptions();     
+    }
   }
 
-  goToUsersPage() {
-    this._userService.createNewUser(this.createUserForm.value.user);    
-    this._router.navigate(["/users"]);
+  showExeptions() {
+    //console.log(this.createUserForm);
+    
   }
 }

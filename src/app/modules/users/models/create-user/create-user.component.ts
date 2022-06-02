@@ -9,6 +9,7 @@ import { emailValidator } from '../../services/create-user.validator';
 })
 export class CreateUserComponent implements OnInit {
   @Input() formGroup!: FormGroup;
+  @Input() isInvalidForm!: boolean;
 
   public userForm!: FormGroup;
   public gender: boolean = false;
@@ -18,7 +19,7 @@ export class CreateUserComponent implements OnInit {
     this.userForm = _formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['', [
+      email: ['@gmail.com', [
         Validators.required,
         Validators.email,
         emailValidator(),    //(control.value.substring(control.value.indexOf('@') + 1) == 'gmail.com')
@@ -42,5 +43,11 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup.addControl('user', this.userForm)
+  }
+
+  getValidStatus(controlName: string) {
+    console.log(this.userForm.pristine, this.userForm.touched);
+    console.log(this.userForm.controls[controlName].status === 'INVALID');
+    return true;
   }
 }

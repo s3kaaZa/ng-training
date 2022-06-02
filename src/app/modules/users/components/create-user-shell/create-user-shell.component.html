@@ -1,9 +1,10 @@
 <div class="create-shell">
     <h2>Create user</h2>
     
-    <form id="formGroup" (submit)="goToUsersPage()">
-        <app-create-user [formGroup]="createUserForm"></app-create-user>
+    <form id="formGroup" (submit)="goToUsersPage($event)">
+        <app-create-user [formGroup]="createUserForm" [isInvalidForm]="isInvalidForm"></app-create-user>
         <button mat-stroked-button color="primary" form="formGroup" >Create</button>
+        <div class="form-status" [style.color]="createUserForm.status === 'INVALID' ? 'red' : ''">Form Status: {{ createUserForm.status }}</div>
     </form>
 
 </div>
