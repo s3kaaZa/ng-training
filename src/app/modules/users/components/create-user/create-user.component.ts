@@ -14,7 +14,6 @@ export class CreateUserComponent implements OnInit {
   public userForm!: FormGroup;
   public gender: boolean = false;
 
-
   constructor(private _formBuilder: FormBuilder) {
     this.userForm = _formBuilder.group({
       firstName: ['', [Validators.required]],
@@ -22,7 +21,7 @@ export class CreateUserComponent implements OnInit {
       email: ['@gmail.com', [
         Validators.required,
         Validators.email,
-        emailValidator(),    //(control.value.substring(control.value.indexOf('@') + 1) == 'gmail.com')
+        emailValidator(),
       ]],
       age: ['', [
         Validators.required,

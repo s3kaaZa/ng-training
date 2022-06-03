@@ -25,14 +25,8 @@ export class CreateUserShellComponent implements OnInit {
       this._userService.createNewUser(this.createUserForm.value.user);    
       this._router.navigate(["/users"]);
     } else {
+      event.preventDefault();
       this.isInvalidForm = true;
-      event?.preventDefault();
-      this.showExeptions();     
     }
-  }
-
-  showExeptions() {
-    //console.log(this.createUserForm);
-    
   }
 }
