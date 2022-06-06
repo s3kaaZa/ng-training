@@ -265,7 +265,7 @@ export class UsersService {
       companyName: user.company,
       department: user.department,
       gender: user.gender,
-      imageUrl: "https://freepikpsd.com/file/2019/10/default-user-profile-image-png-2-Transparent-Images.png"
+      imageUrl: "https://www.oblgazeta.ru/static/images/no-avatar.png"
     }
 
     this._users.unshift(newUser);

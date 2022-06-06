@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { emailValidator } from '../../services/create-user.validator';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { emailAsyncValidator, emailValidator } from '../../services/create-user.validator';
 
 @Component({
   selector: 'app-create-user',
@@ -10,6 +10,7 @@ import { emailValidator } from '../../services/create-user.validator';
 export class CreateUserComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() isInvalidForm!: boolean;
+  @Input() addresses!: FormGroup;
 
   public userForm!: FormGroup;
   public gender: boolean = false;
@@ -42,11 +43,5 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup.addControl('user', this.userForm)
-  }
-
-  getValidStatus(controlName: string) {
-    console.log(this.userForm.pristine, this.userForm.touched);
-    console.log(this.userForm.controls[controlName].status === 'INVALID');
-    return true;
   }
 }

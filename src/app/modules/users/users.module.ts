@@ -7,6 +7,8 @@ import { UsersComponent } from './components/users/users.component';
 import { UsersShellComponent } from './pages/users-shell/users-shell.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { CreateUserShellComponent } from './pages/create-user-shell/create-user-shell.component';
+import { AddressesComponent } from './components/addresses/addresses.component';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { CreateUserShellComponent } from './pages/create-user-shell/create-user-
     UsersShellComponent,
     CreateUserComponent,
     CreateUserShellComponent,
+    AddressesComponent,
+    AddressComponent
   ],
   imports: [
     CommonModule,

@@ -1,49 +1,68 @@
-<form id="userForm" [formGroup]="userForm">
-    <mat-form-field appearance="fill"> <!-- mat-form-field has a built-in ng-valid / ng-invalid -->
+<form id="userForm" #createUserForm [formGroup]="userForm">
+    <mat-form-field appearance="fill">
+        <!-- mat-form-field has a built-in ng-valid / ng-invalid -->
         <mat-label>First name</mat-label>
         <input matInput name="firstName" formControlName="firstName" type="text" placeholder="Illy" />
-        <div *ngIf="isInvalidForm && this.userForm.controls['firstName'].errors?.['required']" class="control-error">This field is required</div>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['firstName'].hasError('required')" class="control-error">
+            This field is required</mat-error>
     </mat-form-field>
-    
+
     <mat-form-field appearance="fill">
         <mat-label>Last name</mat-label>
         <input matInput name="lastName" formControlName="lastName" type="text" placeholder="Thompson" />
-        <div *ngIf="isInvalidForm && this.userForm.controls['lastName'].errors?.['required']" class="control-error">This field is required</div>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['lastName'].hasError('required')" class="control-error">
+            This field is required</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput name="email" formControlName="email" type="text" placeholder="user@user.info" />
-        <div *ngIf="isInvalidForm && this.userForm.controls['email'].errors?.['required']" class="control-error">This field is required</div>
-        <div *ngIf="isInvalidForm && this.userForm.controls['email'].errors?.['email']" class="control-error">This field is not an email</div>
-        <div *ngIf="isInvalidForm && this.userForm.controls['email'].errors?.['notGoogle']" class="control-error">{{ this.userForm.controls['email'].errors?.['notGoogle'] }}</div>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['email'].hasError('required')" class="control-error">This
+            field is required</mat-error>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['email'].hasError('email')" class="control-error">This
+            field is not an email</mat-error>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['email'].hasError('notGoogle')" class="control-error">{{
+            this.userForm.controls['email'].getError('notGoogle') }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Age</mat-label>
-        <input matInput name="age" formControlName="age"  type="number" placeholder="Ex. 19" min="18" max="130" />
+        <input matInput name="age" formControlName="age" type="number" placeholder="Ex. 19" min="18" max="130" />
         <span matSuffix>years</span>
-        <div *ngIf="isInvalidForm && this.userForm.controls['age'].errors?.['required']" class="control-error">This field is required</div>
-        <div *ngIf="isInvalidForm && this.userForm.controls['age'].errors?.['min']" class="control-error">Minimum value - {{ this.userForm.controls['age'].errors?.['min'].min }} years</div>
-        <div *ngIf="isInvalidForm && this.userForm.controls['age'].errors?.['max']" class="control-error">Maximum value - {{ this.userForm.controls['age'].errors?.['max'].max }} years</div>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['age'].hasError('required')" class="control-error">This
+            field is required</mat-error>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['age'].hasError('min')" class="control-error">Minimum
+            value - {{ this.userForm.controls['age'].getError('min').min }} years</mat-error>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['age'].hasError('max')" class="control-error">Maximum
+            value - {{ this.userForm.controls['age'].getError('max').max }} years</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Company</mat-label>
-        <input matInput name="company" formControlName="company" type="text" placeholder="Apple" />
-        <div *ngIf="isInvalidForm && this.userForm.controls['company'].errors?.['required']" class="control-error">This field is required</div>
-        <div *ngIf="isInvalidForm && this.userForm.controls['company'].errors?.['maxlength']" class="control-error">Maximum length - {{ this.userForm.controls['company'].errors?.['maxlength'].requiredLength }} characters</div>
+        <input type="text" matInput name="company" #company formControlName="company" maxlength="35" placeholder="Apple" />
+        <mat-hint align="end">{{company.value.length}} / 35</mat-hint>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['company'].hasError('required')" class="control-error">
+            This field is required</mat-error>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['company'].hasError('maxlength')" class="control-error">
+            Maximum length - {{ this.userForm.controls['company'].getError('maxlength').requiredLength }} characters
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Department</mat-label>
-        <input matInput name="department" formControlName="department" type="text" placeholder="Information Security" />
-        <div *ngIf="isInvalidForm && this.userForm.controls['department'].errors?.['required']" class="control-error">This field is required</div>
-        <div *ngIf="isInvalidForm && this.userForm.controls['department'].errors?.['minlength']" class="control-error">Minimum length - {{ this.userForm.controls['department'].errors?.['minlength'].requiredLength }} characters</div>
+        <input type="text" matInput formControlName="department" placeholder="Information Security">
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['department'].hasError('required')" class="control-error">
+            This field is required</mat-error>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['department'].hasError('minlength')"
+            class="control-error">Minimum length - {{
+            this.userForm.controls['department'].getError('minlength').requiredLength }} characters</mat-error>
     </mat-form-field>
 
     <span class="user-gender">Choose gender:
-        <mat-slide-toggle name="gender" formControlName="gender" [(ngModel)]="gender">{{ gender ? 'Male' : 'Female' }}</mat-slide-toggle><!--  ? 'Male' : 'Female' -->
+        <mat-slide-toggle name="gender" formControlName="gender" [ngModel]="gender">
+            {{ gender ? 'Male' : 'Female' }}
+        </mat-slide-toggle>
     </span>
-    
+
+    <app-addresses></app-addresses>
 </form>
