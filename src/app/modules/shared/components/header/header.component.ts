@@ -13,9 +13,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  buttonClick() {
-    console.log(this.usersButton);
-  }
-
 }

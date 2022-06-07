@@ -1,6 +1,5 @@
 <form id="userForm" #createUserForm [formGroup]="userForm">
     <mat-form-field appearance="fill">
-        <!-- mat-form-field has a built-in ng-valid / ng-invalid -->
         <mat-label>First name</mat-label>
         <input matInput name="firstName" formControlName="firstName" type="text" placeholder="Illy" />
         <mat-error *ngIf="isInvalidForm && this.userForm.controls['firstName'].hasError('required')" class="control-error">
@@ -64,5 +63,5 @@
         </mat-slide-toggle>
     </span>
 
-    <app-addresses></app-addresses>
+    <app-addresses [isInvalidForm]="isInvalidForm"></app-addresses>
 </form>

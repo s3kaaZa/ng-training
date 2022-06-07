@@ -1,7 +1,9 @@
-<h2>Work!</h2>
-
 <div class="addresses">
     <ng-container *ngFor="let formGroupAddress of addressesArray.controls">
-        <app-address [formGroupAddress]="formGroupAddress"></app-address>
+        <app-address [isInvalidForm]="isInvalidForm" [formGroupAddress]="formGroupAddress"></app-address>
+        <button *ngIf="addressesArray.controls.length > 1" type='button' class="form-button" mat-stroked-button
+            color="primary" (click)="deleteAddress(formGroupAddress)">Delete address</button>
     </ng-container>
 </div>
+<button type='button' class="form-button" mat-stroked-button color="primary" (click)="addNewAddress()">Add new
+    address</button>

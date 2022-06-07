@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-addresses',
@@ -7,23 +8,32 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./addresses.component.scss']
 })
 export class AddressesComponent implements OnInit {
+  @Input() createUserForm!: FormBuilder;
+  @Input() isInvalidForm!: boolean;
   addressesArray = new FormArray([
-    this.getFormGroup(), this.getFormGroup()
+    this.getFormGroup()
   ])
+
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.addressesArray);
-
-  }
+  ngOnInit(): void { }
 
   getFormGroup(): FormGroup {
     return new FormGroup({
-      addressLine: new FormControl('', [Validators.required]),
+      addressLine: new FormControl(''),
       city: new FormControl(''),
       zip: new FormControl({ value: '', disabled: true }, [Validators.required])
     })
+  }
+
+  addNewAddress() {
+    this.addressesArray.push(this.getFormGroup());
+  }
+
+  deleteAddress(addressForm: FormGroup) {
+    const index = this.addressesArray.controls.indexOf(addressForm)
+    this.addressesArray.removeAt(index);
   }
 }
 

@@ -1,61 +1,57 @@
 <div class="users-wrapper">
-    <mat-sidenav-container>
-        <div class="users">
-            <ng-container *ngFor="let user of users">
-              <app-card 
-                class="app-card" 
-                [imageUrl]="user.imageUrl" 
-                [isLike]="isLike"
-                (sendToggleLike)="toggleLike(user)">
-                <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
-                <div class="cardContent">
-                    <mat-list-item>ID: {{ user.id }}</mat-list-item>
-                    <mat-divider></mat-divider>
-                    <mat-list-item>Email: {{ user.email }}</mat-list-item>
-                    <mat-divider></mat-divider>
-              <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item>Department: {{ user.department }}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item>Gender: {{ user.gender ? 'Male' : 'Female' }}
-                    <span ngClass="{{ user.gender ? 'user-male' : 'user-female' }}"></span>
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item>Age: {{ user.age }}</mat-list-item>
-                </div>
-              </app-card>
+  <mat-sidenav-container>
+    <div class="users">
+      <ng-container *ngFor="let user of users">
+        <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)">
+          <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
+          <div class="cardContent">
+            <mat-list-item>ID: {{ user.id }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Email: {{ user.email }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Department: {{ user.department }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Gender: {{ user.gender ? 'Male' : 'Female' }}
+              <span ngClass="{{ user.gender ? 'user-male' : 'user-female' }}"></span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Age: {{ user.age }}</mat-list-item>
+            <ng-container *ngFor="let address of addresses">
+              <mat-divider></mat-divider>
+              <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
             </ng-container>
           </div>
+        </app-card>
+      </ng-container>
+    </div>
 
-        <mat-sidenav class="favorite-wrapper" opened mode="side" position="end">
-            <div class="favorite-title">
-                Favorite:
+    <mat-sidenav class="favorite-wrapper" opened mode="side" position="end">
+      <div class="favorite-title">
+        Favorite:
+      </div>
+
+      <div class="users">
+        <ng-container *ngFor="let user of favoriteUsers">
+          <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)">
+            <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
+            <div class="cardContent">
+              <mat-list-item>ID: {{ user.id }}</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Email: {{ user.email }}</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Department: {{ user.department }}</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Gender: {{ user.gender }}</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Age: {{ user.age }}</mat-list-item>
             </div>
-
-            <div class="users">
-                <ng-container *ngFor="let user of favoriteUsers">
-                    <app-card 
-                    class="app-card" 
-                    [imageUrl]="user.imageUrl" 
-                    [isLike]="isLike"
-                    (sendToggleLike)="toggleLike(user)">
-                    <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
-                    <div class="cardContent">
-                        <mat-list-item>ID: {{ user.id }}</mat-list-item>
-                        <mat-divider></mat-divider>
-                        <mat-list-item>Email: {{ user.email }}</mat-list-item>
-                        <mat-divider></mat-divider>
-                        <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
-                        <mat-divider></mat-divider>
-                        <mat-list-item>Department: {{ user.department }}</mat-list-item>
-                        <mat-divider></mat-divider>
-                        <mat-list-item>Gender: {{ user.gender }}</mat-list-item>
-                        <mat-divider></mat-divider>
-                        <mat-list-item>Age: {{ user.age }}</mat-list-item>
-                    </div>
-                    </app-card>
-                </ng-container>
-                </div>        
-        </mat-sidenav>
-    </mat-sidenav-container>
+          </app-card>
+        </ng-container>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
 </div>

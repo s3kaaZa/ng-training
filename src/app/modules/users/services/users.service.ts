@@ -3,6 +3,7 @@ import { IUser } from '../interfaces/user';
 import { FavoriteService } from '../../shared/services/favorite.service';
 import { Favorite } from '../../shared/enums/favorite';
 import { ICreateUser } from '../interfaces/ICreateUser';
+import { IAddress } from '../interfaces/IAddress';
 
 @Injectable({
   providedIn: 'root'
@@ -255,7 +256,7 @@ export class UsersService {
     })
   }
 
-  createNewUser(user: ICreateUser) {
+  createNewUser(user: ICreateUser, addresses: any): void {
     let newUser = {
       id: "D05CDF2C-1C8F-422D-8E71-E2BF3C4DD73B",
       firstName: user.firstName,
@@ -265,9 +266,20 @@ export class UsersService {
       companyName: user.company,
       department: user.department,
       gender: user.gender,
-      imageUrl: "https://www.oblgazeta.ru/static/images/no-avatar.png"
+      imageUrl: "https://www.oblgazeta.ru/static/images/no-avatar.png",
+      address: addresses,
     }
 
+/*     addresses.forEach((address: IAddress, index) => {
+        let addressIndex = index ? index : '';
+        let addressKey = 'address' + addressIndex;
+        if (!address.city) {
+            newUser.address = address.addressLine;
+        } else {
+            newUser.address = address.addressLine + ' ' + address.city + ' ' + address.zip;
+        }
+    })
+ */
     this._users.unshift(newUser);
   }
 

@@ -6,4 +6,5 @@ export interface ICreateUser {
     company: string,
     department: string,
     gender: boolean,
+    address: [],
 }

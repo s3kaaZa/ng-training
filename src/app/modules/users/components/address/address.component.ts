@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-address',
@@ -7,20 +8,26 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./address.component.scss']
 })
 export class AddressComponent implements OnInit {
+  @Input() isInvalidForm!: boolean;
   @Input() formGroupAddress!: FormGroup;
+  subscription!: Subscription;
 
-  constructor() {
-/*     this.formGroupAddress = new FormGroup({
-      addressLine: new FormControl('', [Validators.required]),
-      city: new FormControl(),
-      zip: new FormControl({ value: '', disabled: true }, [Validators.required])
-    })
- */    
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    //console.log(this.formGroupAddress);
-    
+    const zip = this.formGroupAddress.get('zip');
+    const valueCity$ = this.formGroupAddress.get('city')!.valueChanges;
+    this.subscription = valueCity$.subscribe(cityValue => {
+      if (cityValue) {
+        zip!.enable()
+      } else {
+        zip!.disable()
+        zip!.patchValue(null)
+      }
+    })
   }
 
+  ngOnDestroyed(){
+    this.subscription.unsubscribe();
+  }
 }

@@ -12,6 +12,7 @@ export class UsersShellComponent implements OnInit {
   users: IUser[] = [];
   favoriteUsers: IUser[] = [];
   isLike: boolean = false;
+  userKeys: any;
 
   constructor(
     private usersService: UsersService

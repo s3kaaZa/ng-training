@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailAsyncValidator, emailValidator } from '../../services/create-user.validator';
+import { AddressesComponent } from '../addresses/addresses.component';
 
 @Component({
   selector: 'app-create-user',
@@ -11,6 +12,9 @@ export class CreateUserComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() isInvalidForm!: boolean;
   @Input() addresses!: FormGroup;
+
+  @ViewChild(AddressesComponent, {static: false})
+  private addressesComponent!: AddressesComponent;
 
   public userForm!: FormGroup;
   public gender: boolean = false;
@@ -43,5 +47,9 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup.addControl('user', this.userForm)
+  }
+
+  ngAfterViewInit(): void {
+    this.formGroup.addControl('addresses', this.addressesComponent.addressesArray)
   }
 }

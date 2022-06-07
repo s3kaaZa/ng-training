@@ -7,5 +7,6 @@ export interface IUser {
     department: string,
     gender: boolean,
     age: number,
-    imageUrl: string
+    imageUrl: string,
+    address?: string,
 }

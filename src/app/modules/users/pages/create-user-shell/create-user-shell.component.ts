@@ -22,7 +22,7 @@ export class CreateUserShellComponent implements OnInit {
   goToUsersPage(event: Event) {
     if (this.createUserForm.status === 'VALID'){
       this.isInvalidForm = false;
-      this._userService.createNewUser(this.createUserForm.value.user);    
+      this._userService.createNewUser(this.createUserForm.value.user, this.createUserForm.value.addresses);    
       this._router.navigate(["/users"]);
     } else {
       event.preventDefault();
