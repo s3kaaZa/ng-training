@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AddressComponent } from '../../components/address/address.component';
 import { IUser } from '../../interfaces/user';
 import { UsersService } from '../../services/users.service';
 
@@ -12,7 +13,6 @@ export class UsersShellComponent implements OnInit {
   users: IUser[] = [];
   favoriteUsers: IUser[] = [];
   isLike: boolean = false;
-  userKeys: any;
 
   constructor(
     private usersService: UsersService

@@ -19,10 +19,9 @@ export class AddressComponent implements OnInit {
     const valueCity$ = this.formGroupAddress.get('city')!.valueChanges;
     this.subscription = valueCity$.subscribe(cityValue => {
       if (cityValue) {
-        zip!.enable()
+        zip!.enable();
       } else {
-        zip!.disable()
-        zip!.patchValue(null)
+        zip!.disable();
       }
     })
   }
