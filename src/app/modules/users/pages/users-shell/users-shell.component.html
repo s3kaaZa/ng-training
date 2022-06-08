@@ -18,10 +18,14 @@
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>Age: {{ user.age }}</mat-list-item>
-            <!-- {{ addresses[0].controls.city }} -->
-            <ng-container *ngFor="let address of addresses">
+            <ng-container *ngFor="let address of user.addresses">
               <mat-divider></mat-divider>
-              <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
+              <span *ngIf="address.city">
+                <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
+              </span>
+              <span *ngIf="!address.city">
+                <mat-list-item>Address: {{ address.addressLine}}</mat-list-item>
+              </span>
             </ng-container>
           </div>
         </app-card>
@@ -49,6 +53,15 @@
               <mat-list-item>Gender: {{ user.gender }}</mat-list-item>
               <mat-divider></mat-divider>
               <mat-list-item>Age: {{ user.age }}</mat-list-item>
+              <ng-container *ngFor="let address of user.addresses">
+                <mat-divider></mat-divider>
+                <span *ngIf="address.city">
+                  <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
+                </span>
+                <span *ngIf="!address.city">
+                  <mat-list-item>Address: {{ address.addressLine}}</mat-list-item>
+                </span>
+              </ng-container>  
             </div>
           </app-card>
         </ng-container>

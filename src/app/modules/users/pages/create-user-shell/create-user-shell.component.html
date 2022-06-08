@@ -2,8 +2,9 @@
     <h2>Create user</h2>
     
     <form id="formGroup" (submit)="goToUsersPage($event)">
-        <app-create-user [formGroup]="createUserForm" [isInvalidForm]="isInvalidForm"></app-create-user>
-        <button mat-stroked-button color="primary" form="formGroup" >Create</button>
+        <app-create-user [isInvalidForm]="isInvalidForm" (userFormCreated)="onCreateUserPage('user', $event)"></app-create-user>
+        <app-addresses [isInvalidForm]="isInvalidForm" (addressesFormCreated)="onCreateUserPage('addresses', $event)"></app-addresses>
+        <button mat-stroked-button color="primary" form="formGroup">Create</button>
         <div class="form-status" [style.color]="createUserForm.status === 'INVALID' ? 'red' : ''">Form Status: {{ createUserForm.status }}</div>
     </form>
 

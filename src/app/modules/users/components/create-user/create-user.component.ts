@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailAsyncValidator, emailValidator } from '../../services/create-user.validator';
 import { AddressesComponent } from '../addresses/addresses.component';
@@ -13,13 +13,15 @@ export class CreateUserComponent implements OnInit {
   @Input() isInvalidForm!: boolean;
   @Input() addresses!: FormGroup;
 
-  @ViewChild(AddressesComponent, {static: false})
+  @Output() userFormCreated = new EventEmitter<FormGroup>();
+
+  @ViewChild(AddressesComponent, {static: false}) 
   private addressesComponent!: AddressesComponent;
 
   public userForm!: FormGroup;
   public gender: boolean = false;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(_formBuilder: FormBuilder) {
     this.userForm = _formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -46,10 +48,6 @@ export class CreateUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formGroup.addControl('user', this.userForm)
-  }
-
-  ngAfterViewInit(): void {
-    this.formGroup.addControl('addresses', this.addressesComponent.addressesArray)
+    this.userFormCreated.emit(this.userForm);
   }
 }

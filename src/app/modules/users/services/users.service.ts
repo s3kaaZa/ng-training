@@ -267,20 +267,12 @@ export class UsersService {
       department: user.department,
       gender: user.gender,
       imageUrl: "https://www.oblgazeta.ru/static/images/no-avatar.png",
-      address: addresses,
+      addresses: addresses,
     }
 
-/*     addresses.forEach((address: IAddress, index) => {
-        let addressIndex = index ? index : '';
-        let addressKey = 'address' + addressIndex;
-        if (!address.city) {
-            newUser.address = address.addressLine;
-        } else {
-            newUser.address = address.addressLine + ' ' + address.city + ' ' + address.zip;
-        }
-    })
- */
     this._users.unshift(newUser);
+    console.log(this._users);
+    
   }
 
 }
