@@ -10,6 +10,7 @@ import { UsersService } from '../../services/users.service';
 })
 export class CreateUserShellComponent implements OnInit {
   @Input() addressesFormCreated!: FormArray;
+  title: string = 'Create user';
   createUserForm: FormGroup = new FormGroup({});
   isInvalidForm: boolean = false;
 
@@ -31,15 +32,14 @@ export class CreateUserShellComponent implements OnInit {
       event.preventDefault();
       this.isInvalidForm = true;
     }
-    console.log(this);
-    
   }
 
   onCreateUserPage(key: string, userForm: FormGroup): void {
-    console.log(key);
-    console.log(userForm);
-    
     this.createUserForm.addControl(key, userForm)
-    //console.log(this.createUserForm);
+  }
+  
+  log() {
+    console.log(this);
+    
   }
 }

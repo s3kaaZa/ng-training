@@ -1,0 +1,25 @@
+.addresses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .address {
+    position: relative;
+  }
+
+  button {
+    margin: .5rem 0;
+
+    &.add {
+      background-color: #ADFF2F;
+    }
+
+    &.delete-form-button {
+      position: absolute;
+      top: 34px;
+      left: 310px;
+      margin-right: .5rem;
+      background-color: #ff2f2f;
+    }
+  }
+}

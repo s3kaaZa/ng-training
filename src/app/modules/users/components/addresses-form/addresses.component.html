@@ -1,0 +1,13 @@
+<div class="addresses">
+    <ng-container *ngFor="let formGroupAddress of addressesArray.controls">
+        <div class="address">
+            <app-address [isInvalidForm]="isInvalidForm" [formGroupAddress]="formGroupAddress"></app-address>
+            <button *ngIf="addressesArray.controls.length > 1" class="form-button delete-form-button remove" type='button' mat-mini-fab aria-label="Remove address" (click)="deleteAddress(formGroupAddress)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+    <button class="add" type='button' mat-mini-fab aria-label="Add new address" (click)="addNewAddress()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

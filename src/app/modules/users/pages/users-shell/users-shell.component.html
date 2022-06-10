@@ -2,7 +2,7 @@
   <mat-sidenav-container>
     <div class="users">
       <ng-container *ngFor="let user of users">
-        <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)">
+        <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)" (sendEditUser)="editUser(user)">
           <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
           <div class="cardContent">
             <mat-list-item>ID: {{ user.id }}</mat-list-item>
@@ -59,7 +59,7 @@
                   <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
                 </span>
                 <span *ngIf="!address.city">
-                  <mat-list-item>Address: {{ address.addressLine}}</mat-list-item>
+                  <mat-list-item>Address: {{ address.addressLine }}</mat-list-item>
                 </span>
               </ng-container>  
             </div>

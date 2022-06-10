@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
   @Input() isLike!: boolean;
 
   @Output() sendToggleLike = new EventEmitter();
+  @Output() sendEditUser = new EventEmitter();
 
   constructor() { }
 
@@ -20,5 +21,10 @@ export class CardComponent implements OnInit {
   toggleLike() {
     this.isLike = !this.isLike;
     this.sendToggleLike.emit();
+  }
+
+  editUser() {
+    this.sendEditUser.emit();
+    //this.router.navigateByUrl('/user')
   }
 }

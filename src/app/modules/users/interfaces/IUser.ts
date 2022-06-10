@@ -1,3 +1,5 @@
+import { IAddress } from "./IAddress";
+
 export interface IUser {
     id: string,
     firstName: string,
@@ -8,5 +10,5 @@ export interface IUser {
     gender: boolean,
     age: number,
     imageUrl: string,
-    address?: string,
+    addresses: IAddress[],
 }

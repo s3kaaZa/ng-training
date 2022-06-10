@@ -1,0 +1,10 @@
+<div class="edit-shell">
+    <h2>{{ title }}</h2>
+    
+    <form id="formGroup">
+        <app-create-user [isInvalidForm]="isInvalidForm"></app-create-user>
+        <app-addresses [isInvalidForm]="isInvalidForm"></app-addresses>
+        <button mat-stroked-button color="primary" form="formGroup">Update user</button>
+    </form>
+</div>
+<button (click)="log()">this</button>

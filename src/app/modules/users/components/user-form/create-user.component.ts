@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { emailAsyncValidator, emailValidator } from '../../services/create-user.validator';
-import { AddressesComponent } from '../addresses/addresses.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { emailValidator } from '../../services/create-user.validator';
 
 @Component({
   selector: 'app-create-user',
@@ -11,12 +10,8 @@ import { AddressesComponent } from '../addresses/addresses.component';
 export class CreateUserComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() isInvalidForm!: boolean;
-  @Input() addresses!: FormGroup;
 
   @Output() userFormCreated = new EventEmitter<FormGroup>();
-
-  @ViewChild(AddressesComponent, {static: false}) 
-  private addressesComponent!: AddressesComponent;
 
   public userForm!: FormGroup;
   public gender: boolean = false;
@@ -25,7 +20,7 @@ export class CreateUserComponent implements OnInit {
     this.userForm = _formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['@gmail.com', [
+      email: ['', [
         Validators.required,
         Validators.email,
         emailValidator(),
@@ -35,7 +30,7 @@ export class CreateUserComponent implements OnInit {
         Validators.min(15),
         Validators.max(100),
       ]],
-      company: ['', [
+      companyName: ['', [
         Validators.required,
         Validators.maxLength(35)
       ]],

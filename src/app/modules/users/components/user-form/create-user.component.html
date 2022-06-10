@@ -38,12 +38,12 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Company</mat-label>
-        <input type="text" matInput name="company" #company formControlName="company" maxlength="35" placeholder="Apple" />
-        <mat-hint align="end">{{company.value.length}} / 35</mat-hint>
-        <mat-error *ngIf="isInvalidForm && this.userForm.controls['company'].hasError('required')" class="control-error">
+        <input type="text" matInput name="companyName" #companyName formControlName="companyName" maxlength="35" placeholder="Apple" />
+        <mat-hint align="end">{{companyName.value.length}} / 35</mat-hint>
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['companyName'].hasError('required')" class="control-error">
             This field is required</mat-error>
-        <mat-error *ngIf="isInvalidForm && this.userForm.controls['company'].hasError('maxlength')" class="control-error">
-            Maximum length - {{ this.userForm.controls['company'].getError('maxlength').requiredLength }} characters
+        <mat-error *ngIf="isInvalidForm && this.userForm.controls['companyName'].hasError('maxlength')" class="control-error">
+            Maximum length - {{ this.userForm.controls['companyName'].getError('maxlength').requiredLength }} characters
         </mat-error>
     </mat-form-field>
 
@@ -59,7 +59,7 @@
 
     <span class="user-gender">Choose gender:
         <mat-slide-toggle name="gender" formControlName="gender" [ngModel]="gender">
-            {{ gender ? 'Male' : 'Female' }}
+            {{ this.userForm.value['gender'] ? 'Male' : 'Female' }}
         </mat-slide-toggle>
     </span>
 </form>
