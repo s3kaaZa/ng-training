@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '../../services/create-user.validator';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.scss']
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.scss']
 })
 export class CreateUserComponent implements OnInit {
   @Input() formGroup!: FormGroup;

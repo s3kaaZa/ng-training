@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AddressesComponent } from '../../components/addresses-form/addresses.component';
-import { CreateUserComponent } from '../../components/user-form/create-user.component';
+import { AddressesComponent } from '../../components/addresses/addresses.component';
+import { CreateUserComponent } from '../../components/user-form/user-form.component';
 import { IAddress } from '../../interfaces/IAddress';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';

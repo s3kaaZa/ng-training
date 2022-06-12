@@ -2,7 +2,7 @@
     <h2>{{ title }}</h2>
     
     <form id="formGroup" (submit)="goToUsersPage($event)">
-        <app-create-user [isInvalidForm]="isInvalidForm" (userFormCreated)="onCreateUserPage('user', $event)"></app-create-user>
+        <app-user-form [isInvalidForm]="isInvalidForm" (userFormCreated)="onCreateUserPage('user', $event)"></app-user-form>
         <app-addresses [isInvalidForm]="isInvalidForm" (addressesFormCreated)="onCreateUserPage('addresses', $event)"></app-addresses>
         <button mat-stroked-button color="primary" form="formGroup">Create</button>
     </form>
