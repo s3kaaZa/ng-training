@@ -1,10 +1,9 @@
 <div class="edit-shell">
     <h2>{{ title }}</h2>
     
-    <form id="formGroup">
-        <app-user-form [isInvalidForm]="isInvalidForm"></app-user-form>
-        <app-addresses [isInvalidForm]="isInvalidForm"></app-addresses>
-        <button mat-stroked-button color="primary" form="formGroup">Update user</button>
+    <form id="editedUserForm" [formGroup]="editedUserForm"  (submit)="updateUserData($event)">
+        <app-user-form [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [user]="user"></app-user-form>
+        <app-addresses [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [addressesList]="user?.addresses"></app-addresses>
+        <button mat-stroked-button color="primary" form="editedUserForm">Update user</button>
     </form>
 </div>
-<button (click)="log()">this</button>

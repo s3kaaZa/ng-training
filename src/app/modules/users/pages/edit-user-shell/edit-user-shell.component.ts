@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AddressesComponent } from '../../components/addresses/addresses.component';
 import { CreateUserComponent } from '../../components/user-form/user-form.component';
-import { IAddress } from '../../interfaces/IAddress';
 import { IUser } from '../../interfaces/IUser';
+import { emailValidator } from '../../services/create-user.validator';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -12,60 +13,62 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./edit-user-shell.component.scss']
 })
 export class UserEditShellComponent implements OnInit {
-  @ViewChild(CreateUserComponent, {static: false}) 
-  private userFormComp!: CreateUserComponent;
-  @ViewChild(AddressesComponent, {static: false}) 
-  private addressesFormComp!: AddressesComponent;
+  @ViewChild(CreateUserComponent, { static: false })
+  private userForm!: CreateUserComponent;
+
+  @ViewChild(AddressesComponent, { static: false })
+  private addressesForm!: AddressesComponent;
 
   title: string = 'Edit user';
-  user!: IUser;
+  public editedUserForm: FormGroup = new FormGroup({});
+  user!: IUser | undefined;
   userId!: string | null;
   isInvalidForm: boolean = false;
 
   constructor(
+    _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
     private _usersService: UsersService,
-  ) { }
+  ) {
+    this.editedUserForm = _formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [
+        Validators.required,
+        Validators.email,
+        emailValidator(),
+      ]],
+      age: ['', [
+        Validators.required,
+        Validators.min(15),
+        Validators.max(100),
+      ]],
+      companyName: ['', [
+        Validators.required,
+        Validators.maxLength(35)
+      ]],
+      department: ['', [
+        Validators.required,
+        Validators.minLength(6)
+      ]],
+      gender: ['', [Validators.required]]
+    });
+
+    this.userId = this._route.snapshot.paramMap.get('id');
+    this.user = this._usersService.getUserById(this.userId);
+  }
+
 
   ngOnInit(): void {
-    this.userId = this._route.snapshot.paramMap.get('id');
-    [this.user] = this._usersService.getUserById(this.userId);
   }
 
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit', this);
-  }
+  updateUserData(event: Event): void {
+    this._usersService.updateUser(this.userId, this.userForm.userForm.value, this.addressesForm.addressesArray.value)
 
-  ngAfterViewInit() {
-    const userKeys: string[] = Object.keys(this.user);
-    const addresses = this.user['addresses']; 
-
-    for (let key of userKeys) {
-      const value: string | number | boolean | IAddress[] = (this.user as any)[key];
-
-      if (key === 'id' || key === 'imageUrl') {
-        //console.log(key);
-      } else if (key === 'addresses') {
-        for (let address of addresses) {
-          const addressKeys = Object.keys(address);
-          const addressControls: any = this.addressesFormComp.addressesArray.controls[0];
-
-          for (key of addressKeys) {
-            let value: any = (address as any)[key]
-            addressControls.controls[key].patchValue(value)
-          }
-        };
-      } else {
-        if (key === 'companyName') {
-          console.log(222);
-          
-        }
-        this.userFormComp.userForm.controls[key].patchValue(value)
-      }
-    }
-
-    this.userFormComp.userForm.markAllAsTouched();
-    this.addressesFormComp.addressesArray.markAllAsTouched();
+    
+    
+    console.log(this);
+    console.log(event);
   }
 
   log() {

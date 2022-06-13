@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { IAddress } from '../../interfaces/IAddress';
 
 @Component({
   selector: 'app-addresses',
@@ -10,17 +11,27 @@ import { Subscription } from 'rxjs';
 export class AddressesComponent implements OnInit {
   @Input() createUserForm!: FormBuilder;
   @Input() isInvalidForm!: boolean;
+  @Input() addressesList!: IAddress[];
 
   @Output() addressesFormCreated = new EventEmitter<FormArray>();
 
-  addressesArray = new FormArray([
-    this.getFormGroup()
-  ])
+  addressesArray = new FormArray([]);
 
 
   constructor() { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    let addressesListIndex = 0;
+
+    do {
+      addressesListIndex = addressesListIndex + 1;
+      this.addressesArray.push(this.getFormGroup());
+    } while (addressesListIndex < this.addressesList?.length);
+
+    this.addressesArray.patchValue(this.addressesList)
+
+    console.log(this.addressesList);
+     
     this.addressesFormCreated.emit(this.addressesArray);
   }
 
@@ -29,15 +40,21 @@ export class AddressesComponent implements OnInit {
       addressLine: new FormControl(''),
       city: new FormControl(''),
       zip: new FormControl({ value: '', disabled: true }, [Validators.required])
-    })
+    });
   }
 
   addNewAddress() {
+    let addressesListIndex = 0;
+
+    do {
+      addressesListIndex = addressesListIndex + 1;
+    } while (addressesListIndex < this.addressesList.length);
     this.addressesArray.push(this.getFormGroup());
+    console.log('this.addressesArray', this.addressesArray);
   }
 
   deleteAddress(addressForm: FormGroup) {
-    const index = this.addressesArray.controls.indexOf(addressForm)
+    const index = this.addressesArray.controls.indexOf(addressForm);
     this.addressesArray.removeAt(index);
   }
 }

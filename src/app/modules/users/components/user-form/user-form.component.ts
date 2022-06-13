@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { merge } from 'rxjs';
+import { IUser } from '../../interfaces/IUser';
 import { emailValidator } from '../../services/create-user.validator';
 
 @Component({
@@ -10,6 +12,7 @@ import { emailValidator } from '../../services/create-user.validator';
 export class CreateUserComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() isInvalidForm!: boolean;
+  @Input() user!: IUser;
 
   @Output() userFormCreated = new EventEmitter<FormGroup>();
 
@@ -44,5 +47,34 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userFormCreated.emit(this.userForm);
+    this.userForm.patchValue(this.user);
+    this.userForm.get('firstName')?.valueChanges.subscribe((name) => {
+      let emailName = this.getMergedEmail(name, this.userForm.value.lastName);
+      this.setEmail(emailName);
+    })
+    this.userForm.get('lastName')?.valueChanges.subscribe((name) => {
+      let emailName = this.getMergedEmail(this.userForm.value.firstName, name);
+      this.setEmail(emailName);
+    })
   }
+
+  private getMergedEmail(firstPartName: string, secondPartName: string) {
+    let emailName = '';
+    let merged = merge(firstPartName, secondPartName);
+
+    merged.subscribe(x => {
+      emailName = emailName + x;
+    });
+    return emailName;
+  }
+
+  private setEmail(emailName: string) {
+    emailName = emailName.replace(/\s/g, '');
+    this.userForm.get('email')?.patchValue(emailName + '@gmail.com');
+  }
+
+  createEmail(): void {
+  }
+
+  
 }

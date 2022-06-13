@@ -11,7 +11,7 @@ const favoriteMap = {
 })
 export class FavoriteService {
 
-  addToFavorite(id: string, group: Favorite) {
+  addToFavorite(id: string | null, group: Favorite) {
     if (favoriteMap[group].has(id)) {
       favoriteMap[group].delete(id);
     } else {
