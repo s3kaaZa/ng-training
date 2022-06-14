@@ -10,7 +10,7 @@ import { HeaderComponent } from './modules/shared/components/header/header.compo
 import { UsersModule } from './modules/users/users.module';
 import { CarsModule } from './modules/cars/cars.module';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersModule,
     CarsModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
   providers: [],

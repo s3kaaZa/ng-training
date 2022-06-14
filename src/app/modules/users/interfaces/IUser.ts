@@ -10,5 +10,5 @@ export interface IUser {
     gender: boolean,
     age: number,
     imageUrl: string,
-    addresses: IAddress[] | undefined,
+    addresses: IAddress[],
 }

@@ -61,11 +61,11 @@ export class CreateUserComponent implements OnInit, OnChanges {
     if (changes && changes['user']) {
       const user = changes['user'].currentValue as IUser;
       if (user) {
-        console.log(user);
         this.userForm.patchValue(user);
       }
     }
   }
+
   private getMergedEmail(firstPartName: string, secondPartName: string) {
     let emailName = '';
     let merged = merge(firstPartName, secondPartName);

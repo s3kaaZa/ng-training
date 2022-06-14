@@ -3,7 +3,7 @@
     
     <form id="editedUserForm" [formGroup]="editedUserForm"  (submit)="updateUserData()">
         <app-user-form [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [user]="user$ | async"></app-user-form>
-        <!-- <app-addresses [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [addressesList]="user$?.addresses"></app-addresses> -->
+        <app-addresses [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [user]="user$ | async"></app-addresses>
         <button mat-stroked-button color="primary" form="editedUserForm">Update user</button>
     </form>
 </div>

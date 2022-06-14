@@ -19,7 +19,7 @@ import { UserEditShellComponent } from './pages/edit-form-shell/edit-user-shell.
     CreateUserShellComponent,
     AddressesComponent,
     AddressComponent,
-    UserEditShellComponent
+    UserEditShellComponent,
   ],
   imports: [
     CommonModule,

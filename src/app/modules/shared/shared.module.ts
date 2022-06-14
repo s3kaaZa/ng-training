@@ -6,10 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { SearchFieldComponent } from './components/search-field/search-field.component';
 
 @NgModule({
   declarations: [
-    CardComponent
+    CardComponent,
+    SearchFieldComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { MatListModule } from '@angular/material/list';
     MatListModule,
   ],
   exports: [
-    CardComponent
+    CardComponent,
+    SearchFieldComponent
   ]
 })
 export class SharedModule { }

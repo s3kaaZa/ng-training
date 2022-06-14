@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-address',
-  templateUrl: './address.component.html',
-  styleUrls: ['./address.component.scss']
+  templateUrl: './address-form.component.html',
+  styleUrls: ['./address-form.component.scss']
 })
 export class AddressComponent implements OnInit {
   @Input() isInvalidForm!: boolean;
