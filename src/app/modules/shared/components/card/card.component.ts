@@ -25,6 +25,5 @@ export class CardComponent implements OnInit {
 
   editUser() {
     this.sendEditUser.emit();
-    //this.router.navigateByUrl('/user')
   }
 }

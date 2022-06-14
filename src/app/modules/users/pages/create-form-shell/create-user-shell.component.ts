@@ -35,12 +35,5 @@ export class CreateUserShellComponent implements OnInit {
 
   onCreateUserPage(key: string, userForm: FormGroup): void {
     this.createUserForm.addControl(key, userForm);
-    console.log(this.createUserForm);
-    
-  }
-  
-  log() {
-    console.log(this);
-    
   }
 }

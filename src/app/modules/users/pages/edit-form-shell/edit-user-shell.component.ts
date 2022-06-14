@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CanDeactivatePage } from 'src/app/core/guards/leave-create-form.guard';
 import { AddressesComponent } from '../../components/addresses/addresses.component';
 import { CreateUserComponent } from '../../components/user-form/user-form.component';
@@ -14,7 +15,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './edit-user-shell.component.html',
   styleUrls: ['./edit-user-shell.component.scss']
 })
-export class UserEditShellComponent implements CanDeactivatePage {
+export class UserEditShellComponent implements OnInit, CanDeactivatePage {
   @ViewChild(CreateUserComponent, { static: false })
   private userForm!: CreateUserComponent;
 
@@ -23,7 +24,7 @@ export class UserEditShellComponent implements CanDeactivatePage {
 
   public title: string = 'Edit user';
   public editedUserForm: FormGroup = new FormGroup({});
-  public user!: IUser | undefined;
+  public user$!: Observable<IUser | undefined>;
   public isInvalidForm: boolean = false;
   public isFormSubmited: boolean = false;
   private _userId!: string | null;
@@ -57,11 +58,16 @@ export class UserEditShellComponent implements CanDeactivatePage {
       ]],
       gender: ['', [Validators.required]]
     });
+  }
 
-    this._userId = this._route.snapshot.paramMap.get('id');
-    this._usersService.getUserById(this._userId).subscribe((user: IUser | undefined) => {
-      this.user = user;
-      console.log(this.user);
+  ngOnInit(): void {
+    console.log(this);
+    
+    this._route.params.subscribe((data) => {
+      this._userId = data['id'];
+      console.log(this._usersService.getUserById(this._userId));
+      
+      this.user$ = this._usersService.getUserById(this._userId)
     });
   }
 

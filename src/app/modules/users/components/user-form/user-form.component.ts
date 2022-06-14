@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { merge } from 'rxjs';
+import { merge, Observable } from 'rxjs';
 import { IUser } from '../../interfaces/IUser';
 import { emailValidator } from '../../services/create-user.validator';
 
@@ -9,10 +9,10 @@ import { emailValidator } from '../../services/create-user.validator';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit, OnChanges {
   @Input() formGroup!: FormGroup;
   @Input() isInvalidForm!: boolean;
-  @Input() user!: IUser;
+  @Input() user!: Observable<IUser | undefined>;
 
   @Output() userFormCreated = new EventEmitter<FormGroup>();
 
@@ -47,9 +47,6 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userFormCreated.emit(this.userForm);
-    console.log(this.user); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! delay 1000
-    
-    this.userForm.patchValue(this.user);
     this.userForm.get('firstName')?.valueChanges.subscribe((name) => {
       let emailName = this.getMergedEmail(name, this.userForm.value.lastName);
       this.setEmail(emailName);
@@ -60,6 +57,15 @@ export class CreateUserComponent implements OnInit {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes['user']) {
+      const user = changes['user'].currentValue as IUser;
+      if (user) {
+        console.log(user);
+        this.userForm.patchValue(user);
+      }
+    }
+  }
   private getMergedEmail(firstPartName: string, secondPartName: string) {
     let emailName = '';
     let merged = merge(firstPartName, secondPartName);
