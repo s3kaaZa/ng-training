@@ -5,12 +5,15 @@ import { Favorite } from '../../shared/enums/favorite';
 import { ICreateUser } from '../interfaces/ICreateUser';
 import { IAddress } from '../interfaces/IAddress';
 import { Router } from '@angular/router';
+import { delay, Observable, of } from 'rxjs';
+import { IFavorite } from '../../shared/interfaces/IFavorite';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UsersService {
+    private _delayTime = 894;
     private _favoriteUsers: IUser[] = [];
     private _users: IUser[] = [
         {
@@ -388,17 +391,16 @@ export class UsersService {
         private _router: Router
         ) { }
 
-    getUsers(): IUser[] {
-        return this._users;
+    getUsers(): Observable<IUser[]> {
+        return of(this._users).pipe(delay(this._delayTime))
     }
 
-    getFavoriteUsers(): IUser[] {
-        return this._favoriteUsers;
+    getFavoriteUsers(): Observable<IUser[]> {       
+        return of(this._favoriteUsers).pipe(delay(this._delayTime));
     }
 
-    toggleLike(userId: string | null) {
+    toggleLike(userId: string): void {
         this._favoriteUsers = [];
-
         this.favoriteService.addToFavorite(userId, Favorite.User);
 
         this._users.forEach(user => {
@@ -408,8 +410,8 @@ export class UsersService {
         })
     }
 
-    getUserById(userId: string | null): IUser | undefined {
-        return this._users.find(user => user.id === userId);
+    getUserById(userId: string | null): Observable<IUser | undefined> {
+        return of(this._users.find(user => user.id === userId)).pipe(delay(this._delayTime));
     }
 
     createNewUser(user: ICreateUser, addresses: any): void {
@@ -429,7 +431,7 @@ export class UsersService {
         this._users.unshift(newUser);
     }
 
-    updateUser(userId: string | null, user: ICreateUser, addresses: IAddress[]) {
+    updateUser(userId: string | null, user: ICreateUser, addresses: IAddress[]): void {
         let [editableUser] = this._users.filter(user => user.id === userId);
         editableUser.firstName = user.firstName;
         editableUser.lastName = user.lastName;
@@ -441,8 +443,5 @@ export class UsersService {
         editableUser.addresses = addresses;
 
         this._router.navigate(["/users"]);
-
-        console.log(this._users);
-        
     }
 }

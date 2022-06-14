@@ -1,7 +1,7 @@
 <div class="edit-shell">
     <h2>{{ title }}</h2>
     
-    <form id="editedUserForm" [formGroup]="editedUserForm"  (submit)="updateUserData($event)">
+    <form id="editedUserForm" [formGroup]="editedUserForm"  (submit)="updateUserData()">
         <app-user-form [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [user]="user"></app-user-form>
         <app-addresses [isInvalidForm]="isInvalidForm" [formGroup]="editedUserForm" [addressesList]="user?.addresses"></app-addresses>
         <button mat-stroked-button color="primary" form="editedUserForm">Update user</button>

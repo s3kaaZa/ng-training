@@ -29,9 +29,6 @@ export class AddressesComponent implements OnInit {
     } while (addressesListIndex < this.addressesList?.length);
 
     this.addressesArray.patchValue(this.addressesList)
-
-    console.log(this.addressesList);
-     
     this.addressesFormCreated.emit(this.addressesArray);
   }
 
@@ -48,9 +45,8 @@ export class AddressesComponent implements OnInit {
 
     do {
       addressesListIndex = addressesListIndex + 1;
-    } while (addressesListIndex < this.addressesList.length);
+    } while (addressesListIndex < this.addressesArray.controls.length);
     this.addressesArray.push(this.getFormGroup());
-    console.log('this.addressesArray', this.addressesArray);
   }
 
   deleteAddress(addressForm: FormGroup) {

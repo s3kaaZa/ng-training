@@ -6,10 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { UsersComponent } from './components/users/users.component';
 import { UsersShellComponent } from './pages/users-shell/users-shell.component';
 import { CreateUserComponent } from './components/user-form/user-form.component';
-import { CreateUserShellComponent } from './pages/user-form-shell/create-user-shell.component';
+import { CreateUserShellComponent } from './pages/create-form-shell/create-user-shell.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { AddressComponent } from './components/address-form/address-form.component';
-import { UserEditShellComponent } from './pages/edit-user-shell/edit-user-shell.component';
+import { UserEditShellComponent } from './pages/edit-form-shell/edit-user-shell.component';
 
 @NgModule({
   declarations: [

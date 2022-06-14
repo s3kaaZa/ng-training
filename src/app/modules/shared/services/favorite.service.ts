@@ -11,7 +11,7 @@ const favoriteMap = {
 })
 export class FavoriteService {
 
-  addToFavorite(id: string | null, group: Favorite) {
+  addToFavorite(id: string, group: Favorite): void {
     if (favoriteMap[group].has(id)) {
       favoriteMap[group].delete(id);
     } else {
@@ -19,7 +19,7 @@ export class FavoriteService {
     }
   }
 
-  getFavorite(group: Favorite) {
+  getFavorite(group: Favorite): string[] | unknown[] {
     return Array.from(favoriteMap[group]); 
   }
 }

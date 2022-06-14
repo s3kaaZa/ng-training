@@ -1,7 +1,7 @@
 import { IAddress } from "./IAddress";
 
 export interface IUser {
-    id: string | null,
+    id: string,
     firstName: string,
     lastName: string,
     email: string,

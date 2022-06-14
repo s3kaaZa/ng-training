@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IFavorite } from 'src/app/modules/shared/interfaces/IFavorite';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
 
@@ -20,16 +21,20 @@ export class UsersShellComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.users = this._usersService.getUsers();
+    this._usersService.getUsers().subscribe((users: IUser[]) => {
+      this.users = users;
+    });
   }
 
   toggleLike(user: IUser): void {
     this._usersService.toggleLike(user.id);
-    this.favoriteUsers = this._usersService.getFavoriteUsers();
+    this._usersService.getFavoriteUsers().subscribe((favoriteUsers: IUser[]) => {
+      this.favoriteUsers = favoriteUsers;
+    });
   }
 
   editUser(user: IUser): void {
-    const url: string = '/user/edit/' + user.id
-    this._router.navigateByUrl(url)    
+    const url: string = '/user/edit/' + user.id;
+    this._router.navigateByUrl(url);  
   }
 }

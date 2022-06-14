@@ -47,6 +47,8 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userFormCreated.emit(this.userForm);
+    console.log(this.user); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! delay 1000
+    
     this.userForm.patchValue(this.user);
     this.userForm.get('firstName')?.valueChanges.subscribe((name) => {
       let emailName = this.getMergedEmail(name, this.userForm.value.lastName);
@@ -72,9 +74,4 @@ export class CreateUserComponent implements OnInit {
     emailName = emailName.replace(/\s/g, '');
     this.userForm.get('email')?.patchValue(emailName + '@gmail.com');
   }
-
-  createEmail(): void {
-  }
-
-  
 }
