@@ -13,15 +13,14 @@ export class AddressesComponent implements OnInit, OnChanges {
   @Input() createUserForm!: FormBuilder;
   @Input() isInvalidForm!: boolean;
   @Input() addressesList!: IAddress[];
-  @Input() user!: Observable<IUser | undefined>;
+  @Input() user!: IUser;
 
   @Output() addressesFormCreated = new EventEmitter<FormArray>();
 
   addressesArray = new FormArray([]);
 
 
-  constructor() { 
-    this.addressesArray.push(this.getFormGroup())
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -36,11 +35,14 @@ export class AddressesComponent implements OnInit, OnChanges {
         do {
           addressesListIndex = addressesListIndex + 1;
           this.addressesArray.push(this.getFormGroup());
-        } while (addressesListIndex < user.addresses.length - 1);
-    
+        } while (addressesListIndex < user.addresses.length);
+
         this.addressesArray.patchValue(user.addresses);
         this.addressesFormCreated.emit(this.addressesArray);
       }
+    } else {
+      this.addressesArray.push(this.getFormGroup());
+      this.addressesFormCreated.emit(this.addressesArray);
     }
   }
 
@@ -53,11 +55,6 @@ export class AddressesComponent implements OnInit, OnChanges {
   }
 
   addNewAddress() {
-    let addressesListIndex = 0;
-
-    do {
-      addressesListIndex = addressesListIndex + 1;
-    } while (addressesListIndex < this.addressesArray.controls.length);
     this.addressesArray.push(this.getFormGroup());
   }
 

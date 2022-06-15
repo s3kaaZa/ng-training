@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, AfterContentInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CanDeactivatePage } from 'src/app/core/guards/leave-create-form.guard';
 import { AddressesComponent } from '../../components/addresses/addresses.component';
@@ -31,37 +31,16 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
   public user$!: Observable<IUser | undefined>;
   public isInvalidForm: boolean = false;
   public isFormSubmited: boolean = false;
-  private _userId!: string | null;
+  private _userId!: string;
 
   constructor(
     _formBuilder: FormBuilder,
+    private _router: Router,
     private _route: ActivatedRoute,
     private _usersService: UsersService,
     public dialog: MatDialog,
   ) {
-    this.editedUserForm = _formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [
-        Validators.required,
-        Validators.email,
-        emailValidator(),
-      ]],
-      age: ['', [
-        Validators.required,
-        Validators.min(15),
-        Validators.max(100),
-      ]],
-      companyName: ['', [
-        Validators.required,
-        Validators.maxLength(35)
-      ]],
-      department: ['', [
-        Validators.required,
-        Validators.minLength(6)
-      ]],
-      gender: ['', [Validators.required]]
-    });
+    this.editedUserForm = _formBuilder.group({});
   }
 
   ngOnInit(): void {    
@@ -71,14 +50,12 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
     });
   }
 
-  ngAfterContentInit(): void {
-    // console.log(this);
-
-  }
+  ngAfterContentInit(): void { }
 
   updateUserData(): void {
     this.isFormSubmited = true;
     this._usersService.updateUser(this._userId, this.userForm.userForm.value, this.addressesForm.addressesArray.value);
+    this._router.navigate(["/users"]);
   }
 
   hasUnsavedData(): boolean | null {

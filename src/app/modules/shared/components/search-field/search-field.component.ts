@@ -8,8 +8,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   styleUrls: ['./search-field.component.scss']
 })
 export class SearchFieldComponent implements OnInit {
-  @Output() updateUserList = new EventEmitter<string>();
-  
+  @Output() inputChanged = new EventEmitter<string>();
+
   public searchFieldControl = new FormControl("");
 
   constructor() { }
@@ -18,8 +18,8 @@ export class SearchFieldComponent implements OnInit {
     this.searchFieldControl.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged()
-    ).subscribe((value:string) => { 
-        this.updateUserList.emit(value.toLowerCase());
-      })
+    ).subscribe((value: string) => {
+      this.inputChanged.emit(value.toLowerCase());
+    })
   }
 }
