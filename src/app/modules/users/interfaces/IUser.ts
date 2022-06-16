@@ -5,10 +5,10 @@ export interface IUser {
     firstName: string,
     lastName: string,
     email: string,
-    companyName: string,
-    department: string,
+    companyName?: string,
+    department?: string,
     gender: boolean,
     age: number,
     imageUrl: string,
-    addresses: IAddress[],
+    addresses?: IAddress[],
 }

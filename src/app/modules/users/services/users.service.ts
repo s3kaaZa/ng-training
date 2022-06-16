@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/IUser';
 import { FavoriteService } from '../../shared/services/favorite.service';
 import { Favorite } from '../../shared/enums/favorite';
 import { ICreateUser } from '../interfaces/ICreateUser';
 import { IAddress } from '../interfaces/IAddress';
-import { delay, Observable, of } from 'rxjs';
+import { delay, map, Observable, of, tap } from 'rxjs';
+import { IQwer, IRemoteUser } from '../interfaces/IRemoteUser';
+import { NewUser } from './transformUser';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +16,91 @@ import { delay, Observable, of } from 'rxjs';
 export class UsersService {
     private _delayTime = 894;
     private _favoriteUsers: IUser[] = [];
+    private _users: IUser[] = [];
+
+    constructor(
+        private favoriteService: FavoriteService,
+        private _http: HttpClient,
+    ) { }
+
+    getUsers(filter: string = '', page: number = 1, results: number = 8): any {
+        return this._http
+            .get(`https://randomuser.me/api/?page=${page}&results=${results}&seed=abc&inc=login,name,email,gender,dob,picture,location&noinfo`)
+    }
+
+    getFavoriteUsers(): Observable<IUser[]> {
+        return of(this._favoriteUsers)
+            .pipe(
+                delay(this._delayTime)
+            );
+    }
+
+    toggleLike(userId: string): void {
+        this._favoriteUsers = [];
+        this.favoriteService.addToFavorite(userId, Favorite.User);
+
+        this._users.forEach(user => {
+            if (this.favoriteService.getFavorite(Favorite.User).includes(user.id)) {
+                this._favoriteUsers.push(user);
+            }
+        })
+    }
+
+    getUserById(userId: string | null): Observable<IUser | undefined> {
+        return of(this._users.find(user => user.id === userId))
+            .pipe(
+                delay(this._delayTime)
+            );
+    }
+
+    createNewUser(user: ICreateUser, addresses: any): void {
+        let newUser = {
+            id: "D05CDF2C-1C8F-422D-8E71-E2BF3C4DD73B",
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            age: user.age,
+            companyName: user.companyName,
+            department: user.department,
+            gender: user.gender,
+            imageUrl: "https://www.oblgazeta.ru/static/images/no-avatar.png",
+            addresses: addresses,
+        }
+
+        this._users.unshift(newUser);
+    }
+
+    updateUser(userId: string, user: ICreateUser, addresses: IAddress[]): void {
+        let [editableUser] = this._users.filter(user => user.id === userId);
+        editableUser.firstName = user.firstName;
+        editableUser.lastName = user.lastName;
+        editableUser.email = user.email;
+        editableUser.age = user.age;
+        editableUser.companyName = user.companyName;
+        editableUser.department = user.department;
+        editableUser.gender = user.gender;
+        editableUser.addresses = addresses;
+    }
+}
+
+
+/* 
+
+    getUsers(filter: string = ''): Observable<IUser[]> {
+        const users = filter
+        ? this._users.filter((user: IUser) => `${user.firstName} ${user.lastName}`.toLowerCase().includes(filter))
+        : this._users;
+
+        return of(users)
+            .pipe(
+                delay(this._delayTime)
+            )
+           
+        }
+    }
+
+
+
     private _users: IUser[] = [
         {
             "id": "1dd55921-9835-4282-a0d3-865a5a129528",
@@ -384,72 +472,4 @@ export class UsersService {
         }
     ];
 
-    constructor(
-        private favoriteService: FavoriteService,
-    ) { }
-
-    getUsers(filter: string = ''): Observable<IUser[]> {
-        const users = filter
-        ? this._users.filter((user: IUser) => `${user.firstName} ${user.lastName}`.toLowerCase().includes(filter))
-        : this._users;
-
-        return of(users)
-            .pipe(
-                delay(this._delayTime)
-            )
-    }
-
-    getFavoriteUsers(): Observable<IUser[]> {
-        return of(this._favoriteUsers)
-            .pipe(
-                delay(this._delayTime)
-            );
-    }
-
-    toggleLike(userId: string): void {
-        this._favoriteUsers = [];
-        this.favoriteService.addToFavorite(userId, Favorite.User);
-
-        this._users.forEach(user => {
-            if (this.favoriteService.getFavorite(Favorite.User).includes(user.id)) {
-                this._favoriteUsers.push(user);
-            }
-        })
-    }
-
-    getUserById(userId: string | null): Observable<IUser | undefined> {
-        return of(this._users.find(user => user.id === userId))
-            .pipe(
-                delay(this._delayTime)
-            );
-    }
-
-    createNewUser(user: ICreateUser, addresses: any): void {
-        let newUser = {
-            id: "D05CDF2C-1C8F-422D-8E71-E2BF3C4DD73B",
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            age: user.age,
-            companyName: user.companyName,
-            department: user.department,
-            gender: user.gender,
-            imageUrl: "https://www.oblgazeta.ru/static/images/no-avatar.png",
-            addresses: addresses,
-        }
-
-        this._users.unshift(newUser);
-    }
-
-    updateUser(userId: string, user: ICreateUser, addresses: IAddress[]): void {
-        let [editableUser] = this._users.filter(user => user.id === userId);
-        editableUser.firstName = user.firstName;
-        editableUser.lastName = user.lastName;
-        editableUser.email = user.email;
-        editableUser.age = user.age;
-        editableUser.companyName = user.companyName;
-        editableUser.department = user.department;
-        editableUser.gender = user.gender;
-        editableUser.addresses = addresses;
-    }
-}
+*/

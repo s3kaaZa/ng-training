@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { merge, Observable } from 'rxjs';
 import { IUser } from '../../interfaces/IUser';
@@ -9,7 +9,7 @@ import { emailValidator } from '../../services/create-user.validator';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class CreateUserComponent implements OnInit, OnChanges {
+export class CreateUserComponent implements OnInit, OnChanges, OnDestroy {
   @Input() formGroup!: FormGroup;
   @Input() isInvalidForm!: boolean;
   @Input() user!: Observable<IUser | undefined>;
@@ -79,5 +79,8 @@ export class CreateUserComponent implements OnInit, OnChanges {
   private setEmail(emailName: string) {
     emailName = emailName.replace(/\s/g, '');
     this.userForm.get('email')?.patchValue(emailName + '@gmail.com');
+  }
+
+  ngOnDestroy(): void {
   }
 }

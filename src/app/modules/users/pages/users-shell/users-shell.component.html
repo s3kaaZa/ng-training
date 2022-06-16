@@ -38,7 +38,7 @@
       </div>
 
       <div class="users">
-        <ng-container *ngFor="let user of favoriteUsers">
+        <ng-container *ngFor="let user of favoriteUsers | async">
           <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)">
             <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
             <div class="cardContent">

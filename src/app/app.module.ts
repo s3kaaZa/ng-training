@@ -12,20 +12,23 @@ import { CarsModule } from './modules/cars/cars.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    UsersModule,
     CarsModule,
-    MaterialModule,
+    HttpClientModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule,
+    UsersModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
