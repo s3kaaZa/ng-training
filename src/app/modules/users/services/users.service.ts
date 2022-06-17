@@ -35,8 +35,24 @@ export class UsersService {
                 })
             })
         ); 
-        
-        //return this._http.post('https://jsonplaceholder.typicode.com/posts', {1: "1", 2: "2"})
+/*         
+        return this._http.post('https://jsonplaceholder.typicode.com/posts', {
+            id: "9f07341f-c7e6-45b7-bab0-af6de5a4582d",
+            firstName: "Louane",
+            lastName: "Vidal",
+            email: "louane.vidal@example.com",
+            gender: false,
+            age: 56,
+            imageUrl: "https://randomuser.me/api/portraits/women/88.jpg",
+            addresses: [
+                {
+                    addressLine: "2479 Place du 8 Février 1962",
+                    city: "Avignon",
+                    zip: 78276
+                }
+            ]
+        })
+ */
     }
 
     getLockalUsers() {
