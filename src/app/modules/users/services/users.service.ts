@@ -23,9 +23,10 @@ export class UsersService {
         private _http: HttpClient,
     ) { }
 
-    getUsers(filter: string = '', page: number = 1, results: number = 8): any {
-        return this._http
-            .get(`https://randomuser.me/api/?page=${page}&results=${results}&seed=abc&inc=login,name,email,gender,dob,picture,location&noinfo`)
+    getUsers(filter: string = '', page: number, results: number): any {
+        console.log(page, results);
+        
+        return this._http.get(`https://randomuser.me/api/?page=${page}&results=${results}&seed=abc&inc=login,name,email,gender,dob,picture,location&noinfo`)
     }
 
     getFavoriteUsers(): Observable<IUser[]> {

@@ -1,3 +1,9 @@
 <app-search-field (inputChanged)="updateUserList($event)"></app-search-field>
 
 <app-users-shell [users]="users"></app-users-shell>
+<mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              aria-label="Select page"
+              (page)="paginatorClick($event)">
+</mat-paginator>

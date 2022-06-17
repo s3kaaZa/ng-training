@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { IAddress } from '../../interfaces/IAddress';
 import { IUser } from '../../interfaces/IUser';
 
@@ -35,7 +34,7 @@ export class AddressesComponent implements OnInit, OnChanges {
         do {
           addressesListIndex = addressesListIndex + 1;
           this.addressesArray.push(this.getFormGroup());
-        } while (addressesListIndex < user.addresses.length);
+        } while (addressesListIndex < user.addresses?.length);
 
         this.addressesArray.patchValue(user.addresses);
         this.addressesFormCreated.emit(this.addressesArray);
