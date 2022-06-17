@@ -24,9 +24,20 @@ export class UsersService {
     ) { }
 
     getUsers(filter: string = '', page: number, results: number): any {
-        console.log(page, results);
+        const url = `https://randomuser.me/api/?page=${page + 1}&results=${results}&seed=abc&inc=login,name,email,gender,dob,picture,location&noinfo`;
         
-        return this._http.get(`https://randomuser.me/api/?page=${page}&results=${results}&seed=abc&inc=login,name,email,gender,dob,picture,location&noinfo`)
+        if (!filter) {
+            return this._http.get(url).pipe(
+                map((users: any) => {
+                    return users.results.map((user: any) => {
+                        return new NewUser(user).getNewUser();
+                    })
+                })
+            );        
+        } else {
+            console.log(this);
+            
+        }
     }
 
     getFavoriteUsers(): Observable<IUser[]> {

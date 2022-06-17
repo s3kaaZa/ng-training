@@ -5,19 +5,31 @@
         <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)" (sendEditUser)="editUser(user)">
           <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
           <div class="cardContent">
-            <mat-list-item>ID: {{ user.id }}</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Email: {{ user.email }}</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Department: {{ user.department }}</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Gender: {{ user.gender ? 'Male' : 'Female' }}
-              <span ngClass="{{ user.gender ? 'user-male' : 'user-female' }}"></span>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Age: {{ user.age }}</mat-list-item>
+            <ng-container *ngIf="user.hasOwnProperty('id')">
+              <mat-list-item>ID: {{ user.id }}</mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="user.hasOwnProperty('email')">
+              <mat-list-item>Email: {{ user.email }}</mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="user.hasOwnProperty('companyName')">
+              <mat-list-item>Company Name: {{ user.companyName }}</mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="user.hasOwnProperty('department')">
+              <mat-list-item>Department: {{ user.department }}</mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="user.hasOwnProperty('gender')">
+              <mat-list-item>Gender: {{ user.gender ? 'Male' : 'Female' }}
+                <span ngClass="{{ user.gender ? 'user-male' : 'user-female' }}"></span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *ngIf="user.hasOwnProperty('age')">
+              <mat-list-item>Age: {{ user.age }}</mat-list-item>
+            </ng-container>
             <ng-container *ngFor="let address of user.addresses">
               <mat-divider></mat-divider>
               <span *ngIf="address.city">

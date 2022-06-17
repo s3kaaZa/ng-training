@@ -1,3 +1,5 @@
+import { IAddress } from "../interfaces/IAddress";
+
 export class NewUser {
     id: string;
     firstName: string;
@@ -6,7 +8,7 @@ export class NewUser {
     gender: boolean;
     age: number;
     imageUrl: string;
-    //addresses: IAddress[];
+    addresses: IAddress[];
 
     constructor(user: any) {
         this.id = user.login.uuid;
@@ -16,12 +18,23 @@ export class NewUser {
         this.gender = user.gender === 'male' ? true : false;
         this.age = user.dob.age;
         this.imageUrl = user.picture.large;
-        //this.addresses = {}
-/*         .addressLine = user.location.street;
-        this.addresses.city = user.location.city,
-        this.addresses.zip = user.location.postcode
- */
-
+        this.addresses = [{
+            addressLine: `${user.location.street.number} ${user.location.street.name}`,
+            city: user.location.city,
+            zip: user.location.postcode
+        }]
     }
 
+    getNewUser() {
+        return {
+            id: this.id,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            gender: this.gender,
+            age: this.age,
+            imageUrl: this.imageUrl,
+            addresses: this.addresses,
+        }
+    }
 }

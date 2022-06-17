@@ -1,6 +1,6 @@
 <app-search-field (inputChanged)="updateUserList($event)"></app-search-field>
 
-<app-users-shell [users]="users"></app-users-shell>
+<app-users-shell [users]="foundUsers || users"></app-users-shell>
 <mat-paginator [length]="length"
               [pageSize]="pageSize"
               [pageSizeOptions]="pageSizeOptions"

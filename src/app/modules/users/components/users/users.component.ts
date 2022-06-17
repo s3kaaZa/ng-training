@@ -13,10 +13,11 @@ import { UsersService } from '../../services/users.service';
 export class UsersComponent implements OnInit {
   inputChanged!: string;
   users: IUser[] = [];
+  foundUsers!: IUser[] | undefined;
 
   // MatPaginator Inputs
   public length: number = 128;
-  public pageIndex: number = 1;
+  public pageIndex: number = 0;
   public pageSize: number = 8;
   public pageSizeOptions: number[] = [8, 16, 32, 64];
 
@@ -25,26 +26,22 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._usersService.getUsers('', this.pageIndex, this.pageSize)            
-      .pipe(
-        map((users: any) => {
-          users.results.map((user: any) => {
-            const newUser: any = new NewUser(user);
-            console.log(newUser);
-            this.users.push(newUser);
-          })
-        })
-    )
-    .subscribe((users: any) => {
-        console.log(users)
-    })
+    this.getUsers();
+  }
 
+  getUsers() {
+    this._usersService.getUsers('', this.pageIndex, this.pageSize)            
+      .subscribe((users: IUser[]) => {
+          this.users = users;
+      })
   }
 
   updateUserList(inputValue: string) {
-    this._usersService.getUsers(inputValue, 1, 8).subscribe((users: IUser[]) => {
-      this.users = users;
-    })
+    if (!inputValue){
+      this.foundUsers = undefined;
+    } else {
+      this.foundUsers = this.users.filter((user: IUser) => `${user.firstName} ${user.lastName}`.toLowerCase().includes(inputValue));
+    }
   }
 
   paginatorClick(pageEvent: PageEvent) {
@@ -53,6 +50,11 @@ export class UsersComponent implements OnInit {
     this.pageSize = pageEvent.pageSize;
     console.log(pageEvent);
     
-    this._usersService.getUsers('', this.pageIndex, this.pageSize);
+    this._usersService.getUsers('', this.pageIndex, this.pageSize)            
+      .subscribe((users: IUser[]) => {
+          this.users = users;
+          console.log(this.users);
+      }
+    );
   }
 }
