@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { map } from 'rxjs';
 import { IUser } from '../../interfaces/IUser';
-import { NewUser } from '../../services/transformUser';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -13,7 +11,7 @@ import { UsersService } from '../../services/users.service';
 export class UsersComponent implements OnInit {
   inputChanged!: string;
   users: IUser[] = [];
-  foundUsers!: IUser[] | undefined;
+  foundUsers: IUser[] | undefined = undefined;
 
   // MatPaginator Inputs
   public length: number = 128;
@@ -26,11 +24,13 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.users = this._usersService.getLockalUsers();
+
+    if(!this.users.length) this.getUsers();
   }
 
   getUsers() {
-    this._usersService.getUsers('', this.pageIndex, this.pageSize)            
+    this._usersService.getUsers(this.pageIndex, this.pageSize)            
       .subscribe((users: IUser[]) => {
           this.users = users;
       })
@@ -45,15 +45,13 @@ export class UsersComponent implements OnInit {
   }
 
   paginatorClick(pageEvent: PageEvent) {
-    this.length = pageEvent.length;
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
     console.log(pageEvent);
     
-    this._usersService.getUsers('', this.pageIndex, this.pageSize)            
+    this._usersService.getUsers(this.pageIndex, this.pageSize)            
       .subscribe((users: IUser[]) => {
           this.users = users;
-          console.log(this.users);
       }
     );
   }

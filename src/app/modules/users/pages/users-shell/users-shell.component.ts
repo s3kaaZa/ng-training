@@ -30,7 +30,7 @@ export class UsersShellComponent implements OnInit {
     });
   }
 
-  editUser(user: IUser): void {
+  editUser(user: IUser): void {  
     const url: string = '/user/edit/' + user.id;
     this._router.navigateByUrl(url);  
   }

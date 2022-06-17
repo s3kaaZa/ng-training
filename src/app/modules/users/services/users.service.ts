@@ -5,8 +5,7 @@ import { FavoriteService } from '../../shared/services/favorite.service';
 import { Favorite } from '../../shared/enums/favorite';
 import { ICreateUser } from '../interfaces/ICreateUser';
 import { IAddress } from '../interfaces/IAddress';
-import { delay, map, Observable, of, tap } from 'rxjs';
-import { IQwer, IRemoteUser } from '../interfaces/IRemoteUser';
+import { delay, map, Observable, of } from 'rxjs';
 import { NewUser } from './transformUser';
 
 @Injectable({
@@ -23,21 +22,25 @@ export class UsersService {
         private _http: HttpClient,
     ) { }
 
-    getUsers(filter: string = '', page: number, results: number): any {
+    getUsers(page: number, results: number): any {
         const url = `https://randomuser.me/api/?page=${page + 1}&results=${results}&seed=abc&inc=login,name,email,gender,dob,picture,location&noinfo`;
         
-        if (!filter) {
-            return this._http.get(url).pipe(
-                map((users: any) => {
-                    return users.results.map((user: any) => {
-                        return new NewUser(user).getNewUser();
-                    })
+        return this._http.get(url).pipe(
+            map((users: any) => {
+                return users.results.map((user: any) => {
+                    const newUser = new NewUser(user).getNewUser();
+
+                    this._users.push(newUser);
+                    return newUser;
                 })
-            );        
-        } else {
-            console.log(this);
-            
-        }
+            })
+        ); 
+        
+        //return this._http.post('https://jsonplaceholder.typicode.com/posts', {1: "1", 2: "2"})
+    }
+
+    getLockalUsers() {
+        return this._users;
     }
 
     getFavoriteUsers(): Observable<IUser[]> {
@@ -84,6 +87,7 @@ export class UsersService {
 
     updateUser(userId: string, user: ICreateUser, addresses: IAddress[]): void {
         let [editableUser] = this._users.filter(user => user.id === userId);
+        
         editableUser.firstName = user.firstName;
         editableUser.lastName = user.lastName;
         editableUser.email = user.email;
