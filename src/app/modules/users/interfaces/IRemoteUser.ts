@@ -23,9 +23,17 @@ export interface IRemoteUser {
             large: string,
             medium: string,
             thumbnail: string,
-    }
+        },
+        location: {
+            street: {
+                number: number,
+                name: string,
+            },
+            city: string,
+            state: string,
+            country: string,
+            postcode: number,
+            coordinates: object,
+            timezone: object,
+        }
 }
-
-export interface IQwer {
-    [key: string]: any;
-  }

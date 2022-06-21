@@ -20,20 +20,17 @@ export class UsersComponent implements OnInit {
   public pageSizeOptions: number[] = [8, 16, 32, 64];
 
   constructor(
-    private _usersService: UsersService
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
-    this.users = this._usersService.getLockalUsers();
+    this.users = this.usersService.getLockalUsers();
 
     if(!this.users.length) this.getUsers();
   }
 
   getUsers() {
-    this._usersService.getUsers(this.pageIndex, this.pageSize)            
-      .subscribe((users: IUser[]) => {
-          this.users = users;
-      })
+    this.usersService.getUsers(this.pageIndex, this.pageSize);
   }
 
   updateUserList(inputValue: string) {
@@ -44,15 +41,10 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  paginatorClick(pageEvent: PageEvent) {
+  paginationChanging(pageEvent: PageEvent) {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
-    console.log(pageEvent);
     
-    this._usersService.getUsers(this.pageIndex, this.pageSize)            
-      .subscribe((users: IUser[]) => {
-          this.users = users;
-      }
-    );
+    this.getUsers()            
   }
 }
