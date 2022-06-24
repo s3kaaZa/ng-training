@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   inputChanged!: string;
   users: IUser[] = [];
   foundUsers: IUser[] | undefined = undefined;
-  counterSubject = new Subject();
+  counterRefreshPageSubject$ = new Subject();
 
 
   // MatPaginator Inputs
@@ -57,17 +57,17 @@ export class UsersComponent implements OnInit {
 
   public refreshCounter() {
     this.requestService.increaseAndGetRefreshPageCounter().subscribe(
-      x => this.counterSubject.next(x)
+      ordinalNumber => this.counterRefreshPageSubject$.next(ordinalNumber)
     );
   }
 
   private refreshPageCounter() {
-    this.counterSubject.pipe(
+    this.counterRefreshPageSubject$.pipe(
       switchMap(
-        (index: number) => this.requestService.refreshPage(index)
+        (ordinalNumber: number) => this.requestService.refreshPage(ordinalNumber)
       )
     ).subscribe(
-      value => console.log('refreshPageCounter = ', value)
+      ordinalNumber => console.log('refreshPageCounter = ', ordinalNumber)
     )
   }
 }

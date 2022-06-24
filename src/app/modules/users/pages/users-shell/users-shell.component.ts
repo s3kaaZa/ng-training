@@ -16,9 +16,9 @@ export class UsersShellComponent implements OnInit {
   public favoriteUsers!: IUser[];
   public isLike: boolean = false;
   public editedUser!: any;
-  private exportCounterSubject = new Subject();
-  private saveCounterSubject = new Subject();
-  private sendOnlyFirstSubject = new Subject();
+  private exportCounterSubject$ = new Subject();
+  private saveCounterSubject$ = new Subject();
+  private sendOnlyFirstSubject$ = new Subject();
 
   constructor(
     private usersService: UsersService,
@@ -46,24 +46,24 @@ export class UsersShellComponent implements OnInit {
 
   private refreshExportCounter(): void {
     this.requestService.increaseAndGetExportCounter().subscribe(
-      x => this.exportCounterSubject.next(x)
+      ordinalNumber => this.exportCounterSubject$.next(ordinalNumber)
     );
   }
 
   private refreshSaveCounter(): void {
     this.requestService.increaseAndGetSaveCounter().subscribe(
-      x => this.saveCounterSubject.next(x)
+      ordinalNumber => this.saveCounterSubject$.next(ordinalNumber)
     );
   }
 
   private refreshOnlyFirstCounter(): void {
     this.requestService.increaseAndGetOnlyFirstCounter().subscribe(
-      x => this.sendOnlyFirstSubject.next(x)
+      ordinalNumber => this.sendOnlyFirstSubject$.next(ordinalNumber)
     );
   }
 
   private exportUser(): void {
-    this.exportCounterSubject.pipe(
+    this.exportCounterSubject$.pipe(
       mergeMap(
         (ordinalNumber: number) => this.requestService.exportUser(ordinalNumber)
       )
@@ -73,7 +73,7 @@ export class UsersShellComponent implements OnInit {
   }
 
   private saveUser(): void {
-    this.saveCounterSubject.pipe(
+    this.saveCounterSubject$.pipe(
       concatMap(
         (ordinalNumber: number) => this.requestService.saveUser(ordinalNumber)
       )
@@ -83,7 +83,7 @@ export class UsersShellComponent implements OnInit {
   }
 
   private onlyFirstRequest(): void {
-    this.sendOnlyFirstSubject.pipe(
+    this.sendOnlyFirstSubject$.pipe(
       exhaustMap(
         (ordinalNumber: number) => this.requestService.sendFirst(ordinalNumber)
       )
