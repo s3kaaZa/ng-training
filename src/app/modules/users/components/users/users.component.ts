@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.users = this.usersService.getLockalUsers();
 
-    if(!this.users.length) this.getUsers();
+    if (!this.users.length) this.getUsers();
 
     this.refreshPageCounter();
   }
@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit {
   }
 
   public updateUserList(inputValue: string) {
-    if (!inputValue){
+    if (!inputValue) {
       this.foundUsers = undefined;
     } else {
       this.foundUsers = this.users.filter((user: IUser) => `${user.firstName} ${user.lastName}`.toLowerCase().includes(inputValue));
@@ -51,8 +51,8 @@ export class UsersComponent implements OnInit {
   public paginationChanging(pageEvent: PageEvent) {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
-    
-    this.getUsers()            
+
+    this.getUsers()
   }
 
   public refreshCounter() {
