@@ -40,9 +40,9 @@ export class UsersShellComponent implements OnInit, OnDestroy {
     });
   }
 
-  private editUser(user: IUser): void {  
+  private editUser(user: IUser): void {
     const url: string = '/user/edit/' + user.id;
-    this.router.navigateByUrl(url);  
+    this.router.navigateByUrl(url);
   }
 
   private refreshExportCounter(): void {
