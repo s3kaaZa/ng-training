@@ -3,7 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
 import { RequestService } from 'src/app/modules/shared/services/request.service';
-import { mergeMap, of, Subject, switchMap, tap } from 'rxjs';
+import { Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-users',

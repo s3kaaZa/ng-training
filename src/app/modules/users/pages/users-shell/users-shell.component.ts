@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { concatMap, exhaustMap, mergeMap, Subject, switchMap, tap } from 'rxjs';
+import { concatMap, exhaustMap, mergeMap, Subject } from 'rxjs';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
 import { RequestService } from 'src/app/modules/shared/services/request.service';
