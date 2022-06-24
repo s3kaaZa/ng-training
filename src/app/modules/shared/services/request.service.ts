@@ -45,25 +45,9 @@ export class RequestService {
     return of(this.onlyFirstCounter);
   }
 
-  refreshPage(counter: number) {
-    return this.returnCounterAfterDelay(counter)
-  }
-
-  exportUser(counter: number) {
-    return this.returnCounterAfterDelay(counter)
-  }
-
-  saveUser(counter: number) {
-    return this.returnCounterAfterDelay(counter)
-  }
-
-  sendFirst(counter: number) {
-    return this.returnCounterAfterDelay(counter)
-  }
-
-  private returnCounterAfterDelay(counter: number) {
+  returnCounterAfterDelay(counter: number) {
     return of(counter).pipe(
       delay(this.getDelay())
-    );
+    )
   }
 }

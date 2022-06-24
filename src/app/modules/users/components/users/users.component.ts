@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
   private refreshPageCounter() {
     this.counterRefreshPageSubject$.pipe(
       switchMap(
-        (ordinalNumber: number) => this.requestService.refreshPage(ordinalNumber)
+        (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
       )
     ).subscribe(
       ordinalNumber => console.log('refreshPageCounter = ', ordinalNumber)

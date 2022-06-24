@@ -65,7 +65,7 @@ export class UsersShellComponent implements OnInit {
   private exportUser(): void {
     this.exportCounterSubject$.pipe(
       mergeMap(
-        (ordinalNumber: number) => this.requestService.exportUser(ordinalNumber)
+        (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
       )
     ).subscribe(
       ordinalNumber => this.log('exportUserCounter = ', ordinalNumber)
@@ -75,7 +75,7 @@ export class UsersShellComponent implements OnInit {
   private saveUser(): void {
     this.saveCounterSubject$.pipe(
       concatMap(
-        (ordinalNumber: number) => this.requestService.saveUser(ordinalNumber)
+        (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
       )
     ).subscribe(
       ordinalNumber => this.log('saveUserCounter = ', ordinalNumber)
@@ -85,7 +85,7 @@ export class UsersShellComponent implements OnInit {
   private onlyFirstRequest(): void {
     this.sendOnlyFirstSubject$.pipe(
       exhaustMap(
-        (ordinalNumber: number) => this.requestService.sendFirst(ordinalNumber)
+        (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
       )
     ).subscribe(
       ordinalNumber => this.log('onlyFirstRequestCounter = ', ordinalNumber)
