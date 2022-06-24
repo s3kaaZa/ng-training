@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { concatMap, exhaustMap, mergeMap, Subject } from 'rxjs';
+import { concatMap, exhaustMap, mergeMap, Subject, takeWhile } from 'rxjs';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
 import { RequestService } from 'src/app/modules/shared/services/request.service';
@@ -10,7 +10,7 @@ import { RequestService } from 'src/app/modules/shared/services/request.service'
   templateUrl: './users-shell.component.html',
   styleUrls: ['./users-shell.component.scss']
 })
-export class UsersShellComponent implements OnInit {
+export class UsersShellComponent implements OnInit, OnDestroy {
   @Input() users!: IUser[];
 
   public favoriteUsers!: IUser[];
@@ -19,6 +19,7 @@ export class UsersShellComponent implements OnInit {
   private exportCounterSubject$ = new Subject();
   private saveCounterSubject$ = new Subject();
   private sendOnlyFirstSubject$ = new Subject();
+  private componentActive: boolean = true;
 
   constructor(
     private usersService: UsersService,
@@ -66,7 +67,8 @@ export class UsersShellComponent implements OnInit {
     this.exportCounterSubject$.pipe(
       mergeMap(
         (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
-      )
+      ),
+      takeWhile(() => this.componentActive)
     ).subscribe(
       ordinalNumber => this.log('exportUserCounter = ', ordinalNumber)
     )
@@ -76,7 +78,8 @@ export class UsersShellComponent implements OnInit {
     this.saveCounterSubject$.pipe(
       concatMap(
         (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
-      )
+      ),
+      takeWhile(() => this.componentActive)
     ).subscribe(
       ordinalNumber => this.log('saveUserCounter = ', ordinalNumber)
     )
@@ -86,7 +89,8 @@ export class UsersShellComponent implements OnInit {
     this.sendOnlyFirstSubject$.pipe(
       exhaustMap(
         (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
-      )
+      ),
+      takeWhile(() => this.componentActive)
     ).subscribe(
       ordinalNumber => this.log('onlyFirstRequestCounter = ', ordinalNumber)
     )
@@ -94,5 +98,9 @@ export class UsersShellComponent implements OnInit {
 
   private log(counterName: string, value: number): void {
     return console.log(counterName, value);
+  }
+
+  ngOnDestroy(): void {
+    this.componentActive = false;
   }
 }

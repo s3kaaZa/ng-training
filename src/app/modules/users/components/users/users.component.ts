@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
 import { RequestService } from 'src/app/modules/shared/services/request.service';
-import { Subject, switchMap } from 'rxjs';
+import { Subject, switchMap, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   inputChanged!: string;
   users: IUser[] = [];
   foundUsers: IUser[] | undefined = undefined;
   counterRefreshPageSubject$ = new Subject();
+  componentActive: boolean = true;
 
 
   // MatPaginator Inputs
@@ -65,9 +66,14 @@ export class UsersComponent implements OnInit {
     this.counterRefreshPageSubject$.pipe(
       switchMap(
         (ordinalNumber: number) => this.requestService.returnCounterAfterDelay(ordinalNumber)
-      )
+      ),
+      takeWhile(() => this.componentActive)
     ).subscribe(
       ordinalNumber => console.log('refreshPageCounter = ', ordinalNumber)
     )
+  }
+
+  ngOnDestroy(): void {
+    this.componentActive = false;
   }
 }
