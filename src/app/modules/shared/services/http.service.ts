@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 
 const baseApi = 'https://randomuser.me/api/';
 const includingFields = ['login','name','email','gender','dob','picture','location'];

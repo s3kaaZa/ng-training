@@ -12,6 +12,9 @@ export class CardComponent implements OnInit {
 
   @Output() sendToggleLike = new EventEmitter();
   @Output() sendEditUser = new EventEmitter();
+  @Output() sendExportUser = new EventEmitter();
+  @Output() sendSaveUser = new EventEmitter();
+  @Output() sendOnlyFirst = new EventEmitter();
 
   constructor() { }
 
@@ -25,5 +28,17 @@ export class CardComponent implements OnInit {
 
   editUser() {
     this.sendEditUser.emit();
+  }
+
+  exportUser() {
+    this.sendExportUser.emit();
+  }
+
+  saveUser() {
+    this.sendSaveUser.emit();
+  }
+
+  sendOnlyFirstRequest() {
+    this.sendOnlyFirst.emit();
   }
 }

@@ -1,12 +1,10 @@
-export interface IRemoteUser {
-        gender: string,
-        name: {
+export interface IRemoteUserName {
             title: string,
             first: string,
             last: string,
-        },
-        email: string,
-        login: {
+}
+
+export interface IRemoteUserLogin {
             uuid: string,
             username: string,
             password: string,
@@ -14,26 +12,41 @@ export interface IRemoteUser {
             md5: string,
             sha1: string,
             sha256: string,
-        },
-        dob: {
-            date: Date,
-            age: number,
-        },
-        picture: {
-            large: string,
-            medium: string,
-            thumbnail: string,
-        },
-        location: {
-            street: {
-                number: number,
-                name: string,
-            },
-            city: string,
-            state: string,
-            country: string,
-            postcode: number,
-            coordinates: object,
-            timezone: object,
-        }
+}
+
+export interface IRemoteUserDob {
+    date: Date,
+    age: number,
+}
+
+export interface IRemoteUserPicture {
+    large: string,
+    medium: string,
+    thumbnail: string,
+}
+
+export interface IRemoteUserStreet {
+    number: number,
+    name: string,
+}
+
+export interface IRemoteUserLocation {
+    street: IRemoteUserStreet,
+    city: string,
+    state: string,
+    country: string,
+    postcode: number,
+    coordinates: object,
+    timezone: object,
+}
+
+
+export interface IRemoteUser {
+        gender: string,
+        name: IRemoteUserName,
+        email: string,
+        login: IRemoteUserLogin,
+        dob: IRemoteUserDob,
+        picture: IRemoteUserPicture,
+        location: IRemoteUserLocation,
 }

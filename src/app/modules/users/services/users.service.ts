@@ -30,7 +30,7 @@ export class UsersService {
         return this.httpService.get(page, results, null).pipe(
             take(1),
             map((userDTOs: IRemoteUser[]) => {               
-                return userDTOs.map((user: IRemoteUser) => {                    
+                userDTOs.map((user: IRemoteUser) => {                    
                     this.users.push(this.mapUserDTOtoUser(user));
                 })
             })

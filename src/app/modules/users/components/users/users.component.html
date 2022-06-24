@@ -1,9 +1,8 @@
 <app-search-field (inputChanged)="updateUserList($event)"></app-search-field>
 
+<button mat-stroked-button color="primary" (click)="refreshCounter()">Update user</button>
+
 <app-users-shell [users]="foundUsers || users"></app-users-shell>
-<mat-paginator [length]="length"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="pageSizeOptions"
-              aria-label="Select page"
-              (page)="paginationChanging($event)">
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" aria-label="Select page"
+    (page)="paginationChanging($event)">
 </mat-paginator>

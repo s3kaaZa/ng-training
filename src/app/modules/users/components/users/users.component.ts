@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
+import { RequestService } from 'src/app/modules/shared/services/request.service';
+import { mergeMap, of, Subject, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -12,6 +14,8 @@ export class UsersComponent implements OnInit {
   inputChanged!: string;
   users: IUser[] = [];
   foundUsers: IUser[] | undefined = undefined;
+  counterSubject = new Subject();
+
 
   // MatPaginator Inputs
   public length: number = 128;
@@ -20,20 +24,23 @@ export class UsersComponent implements OnInit {
   public pageSizeOptions: number[] = [8, 16, 32, 64];
 
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private requestService: RequestService,
   ) { }
 
   ngOnInit(): void {
     this.users = this.usersService.getLockalUsers();
 
     if(!this.users.length) this.getUsers();
+
+    this.refreshPageCounter();
   }
 
-  getUsers() {
+  private getUsers() {
     this.usersService.getUsers(this.pageIndex, this.pageSize);
   }
 
-  updateUserList(inputValue: string) {
+  public updateUserList(inputValue: string) {
     if (!inputValue){
       this.foundUsers = undefined;
     } else {
@@ -41,10 +48,26 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  paginationChanging(pageEvent: PageEvent) {
+  public paginationChanging(pageEvent: PageEvent) {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
     
     this.getUsers()            
+  }
+
+  public refreshCounter() {
+    this.requestService.increaseAndGetRefreshPageCounter().subscribe(
+      x => this.counterSubject.next(x)
+    );
+  }
+
+  private refreshPageCounter() {
+    this.counterSubject.pipe(
+      switchMap(
+        (index: number) => this.requestService.refreshPage(index)
+      )
+    ).subscribe(
+      value => console.log('refreshPageCounter = ', value)
+    )
   }
 }

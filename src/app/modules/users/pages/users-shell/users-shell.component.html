@@ -2,7 +2,14 @@
   <mat-sidenav-container>
     <div class="users">
       <ng-container *ngFor="let user of users">
-        <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)" (sendEditUser)="editUser(user)">
+        <app-card class="app-card" 
+          [imageUrl]="user.imageUrl" 
+          [isLike]="isLike" 
+          (sendToggleLike)="toggleLike(user)" 
+          (sendEditUser)="editUser(user)"
+          (sendExportUser)="refreshExportCounter()"
+          (sendSaveUser)="refreshSaveCounter()"
+          (sendOnlyFirst)="refreshOnlyFirstCounter()">
           <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
           <div class="cardContent">
             <ng-container *ngIf="user.hasOwnProperty('id')">
