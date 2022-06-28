@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CarsShellComponent } from './models/cars-shell/cars-shell.component';
+import { CarsRoutingModule } from './cars-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CarsShellComponent } from './models/cars-shell/cars-shell.component';
     MatListModule,
     MatButtonModule,
     MatSidenavModule,
+    CarsRoutingModule,
   ],
   exports: [
     CarsComponent

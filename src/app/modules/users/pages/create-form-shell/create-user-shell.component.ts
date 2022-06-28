@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/modules/shared/services/authentication.service';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -9,14 +10,18 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./create-user-shell.component.scss']
 })
 export class CreateUserShellComponent implements OnInit {
+  userName: string = '';
   title: string = 'Create user';
   createUserForm: FormGroup = new FormGroup({});
   isInvalidForm: boolean = false;
 
   constructor(
-    private _router: Router,
-    private _userService: UsersService
-  ) { }
+    private router: Router,
+    private userService: UsersService,
+    private authService: AuthenticationService,
+  ) { 
+    this.userName = authService.getCurrentUserName();
+  }
 
   ngOnInit(): void { }
 
@@ -25,8 +30,8 @@ export class CreateUserShellComponent implements OnInit {
 
     if (this.createUserForm.status === 'VALID'){
       this.isInvalidForm = false;
-      this._userService.createNewUser(this.createUserForm.value.user, this.createUserForm.value.addresses);    
-      this._router.navigate(["/users"]);
+      this.userService.createNewUser(this.createUserForm.value.user, this.createUserForm.value.addresses);    
+      this.router.navigate(["/users"]);
     } else {
       event.preventDefault();
       this.isInvalidForm = true;

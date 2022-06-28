@@ -4,6 +4,7 @@ import { IUser } from '../../interfaces/IUser';
 import { UsersService } from '../../services/users.service';
 import { RequestService } from 'src/app/modules/shared/services/request.service';
 import { Subject, switchMap, takeWhile } from 'rxjs';
+import { AuthenticationService } from 'src/app/modules/shared/services/authentication.service';
 
 @Component({
   selector: 'app-users',
@@ -11,6 +12,7 @@ import { Subject, switchMap, takeWhile } from 'rxjs';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit, OnDestroy {
+  userName: string = '';
   inputChanged!: string;
   users: IUser[] = [];
   foundUsers: IUser[] | undefined = undefined;
@@ -27,7 +29,10 @@ export class UsersComponent implements OnInit, OnDestroy {
   constructor(
     private usersService: UsersService,
     private requestService: RequestService,
-  ) { }
+    private authService: AuthenticationService,
+  ) { 
+    this.userName = authService.getCurrentUserName();
+  }
 
   ngOnInit(): void {
     this.users = this.usersService.getLockalUsers();

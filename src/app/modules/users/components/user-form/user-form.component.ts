@@ -19,8 +19,8 @@ export class CreateUserComponent implements OnInit, OnChanges, OnDestroy {
   public userForm!: FormGroup;
   public gender: boolean = false;
 
-  constructor(_formBuilder: FormBuilder) {
-    this.userForm = _formBuilder.group({
+  constructor(formBuilder: FormBuilder) {
+    this.userForm = formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [

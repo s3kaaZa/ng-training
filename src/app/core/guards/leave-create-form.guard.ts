@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface CanDeactivatePage {
   hasUnsavedData(): boolean | null;
-  isFormSubmited: boolean;
+  isFormSubmitted: boolean;
 }
 
 @Injectable({
@@ -13,7 +13,7 @@ export interface CanDeactivatePage {
 export class LeaveCreateFormGuard implements CanDeactivate<CanDeactivatePage> {
   canDeactivate(
     component: CanDeactivatePage): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (!component.hasUnsavedData() || component.isFormSubmited) {
+      if (!component.hasUnsavedData() || component.isFormSubmitted) {
         return true;
       } else {
         return confirm('You have some unsaved changes and it will be lost. Do you want to leave the page?');

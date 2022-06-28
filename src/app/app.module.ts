@@ -13,11 +13,17 @@ import { CarsModule } from './modules/cars/cars.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrationFormComponent } from './modules/auth/registration-form/registration-form.component';
+import { LoginFormComponent } from './modules/auth/login-form/login-form.component';
+import { HomePageComponent } from './modules/auth/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    RegistrationFormComponent,
+    LoginFormComponent,
+    HomePageComponent,
   ],
   imports: [
     AppRoutingModule,

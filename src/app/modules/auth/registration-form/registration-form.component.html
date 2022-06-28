@@ -1,0 +1,32 @@
+<div class="registration-wrapper">
+    <form class="registration-form" [formGroup]="registrationForm">
+        <mat-form-field class="userName" appearance="fill">
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="Enter your name" name="userName" formControlName="userName"
+                [(ngModel)]="userName">
+            <mat-error *ngIf="isSubmittedForm && this.registrationForm.controls['userName'].hasError('required')"
+                class="control-error">
+                This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="password" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" value="" name="pass" formControlName="pass"
+                type="password" [(ngModel)]="pass">
+            <mat-error *ngIf="isSubmittedForm && this.registrationForm.controls['pass'].hasError('required')"
+                class="control-error">
+                This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="confirmPass" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Confirm your password" value="" name="confirmPass"
+                formControlName="confirmPass" type="password" [(ngModel)]="confirmPass">
+            <mat-error *ngIf="isSubmittedForm && this.registrationForm.hasError('mismatch')"
+                class="control-error">
+                Password does not match</mat-error>
+            <mat-error *ngIf="isSubmittedForm && this.registrationForm.controls['confirmPass'].hasError('required')"
+                class="control-error">
+                This field is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    </form>
+</div>

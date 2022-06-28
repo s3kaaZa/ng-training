@@ -30,7 +30,7 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
   public editedUserForm: FormGroup = new FormGroup({});
   public user$!: Observable<IUser | undefined>;
   public isInvalidForm: boolean = false;
-  public isFormSubmited: boolean = false;
+  public isFormSubmitted: boolean = false;
   private _userId!: string;
 
   constructor(
@@ -53,7 +53,7 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
   ngAfterContentInit(): void { }
 
   updateUserData(): void {
-    this.isFormSubmited = true;
+    this.isFormSubmitted = true;
     this._usersService.updateUser(this._userId, this.userForm.userForm.value, this.addressesForm.addressesArray.value);
     this._router.navigate(["/users"]);
   }

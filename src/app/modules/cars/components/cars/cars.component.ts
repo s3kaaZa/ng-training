@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/modules/shared/services/authentication.service';
 
 @Component({
   selector: 'app-cars',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./cars.component.scss']
 })
 export class CarsComponent {
+  userName: string = '';
 
-  constructor() { 
+  constructor(private authService: AuthenticationService) { 
+    this.userName = authService.getCurrentUserName();
   }
 }
