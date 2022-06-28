@@ -33,14 +33,19 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void { }
 
   submit() {
-    if (this.authService.authenticationUser(this.userName, this.password)) {
+    if (this.authService.authenticationUser(this.userName, this.password).length) {
       this.clear();
       this.router.navigateByUrl('home');
     }
   }
-
-  clear() {
-    this.userName = "";
-    this.password = "";
+  
+  goToRegistrationPage() {
+    this.clear();
+    this.router.navigateByUrl('registration');
   }
+  
+    clear() {
+      this.userName = "";
+      this.password = "";
+    }
 }

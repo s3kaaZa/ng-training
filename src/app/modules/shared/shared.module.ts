@@ -10,11 +10,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     CardComponent,
-    SearchFieldComponent
+    SearchFieldComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

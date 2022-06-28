@@ -9,3 +9,11 @@
         flex-direction: column;
     }
 }
+
+.registration-button-wrapper {
+    text-align: end;
+
+    .registration-button {
+        margin: 16px;
+    }
+}

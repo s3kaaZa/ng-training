@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationFormComponent } from './modules/auth/registration-form/registration-form.component';
 import { LoginFormComponent } from './modules/auth/login-form/login-form.component';
 import { HomePageComponent } from './modules/auth/home-page/home-page.component';
+import { AuthUserGuard } from './core/guards/auth-user.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { HomePageComponent } from './modules/auth/home-page/home-page.component'
     ReactiveFormsModule,
     UsersModule,
   ],
-  providers: [],
+  providers: [
+    AuthUserGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

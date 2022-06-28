@@ -1,11 +1,25 @@
 .login-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
     .login-form {
         width: 300px;
-        margin-top: 16px;
         display: flex;
         flex-direction: column;
+        margin: 16px auto;
+    }
+
+    .register {
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.login-button-wrapper {
+    text-align: end;
+
+    .login-button {
+        margin-right: 16px;
     }
 }

@@ -64,4 +64,9 @@ export class RegistrationFormComponent implements OnInit {
       this.registrationForm.get('confirmPassword')?.untouched
     );
   }
+
+  goToLoginPage() {
+    this.clear();
+    this.router.navigateByUrl('login');
+  }
 }

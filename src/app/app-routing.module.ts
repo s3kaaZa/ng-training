@@ -8,6 +8,8 @@ import { LeaveCreateFormGuard } from './core/guards/leave-create-form.guard';
 import { LoginFormComponent } from './modules/auth/login-form/login-form.component';
 import { RegistrationFormComponent } from './modules/auth/registration-form/registration-form.component';
 import { HomePageComponent } from './modules/auth/home-page/home-page.component';
+import { PageNotFoundComponent } from './modules/shared/components/page-not-found/page-not-found.component';
+import { AuthUserGuard } from './core/guards/auth-user.guard';
 
 const routes: Routes = [
   {
@@ -25,24 +27,35 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomePageComponent
+    component: HomePageComponent,
+    canActivate: [AuthUserGuard]
   },
   {
     path: 'create-user',
-    component: CreateUserShellComponent
+    component: CreateUserShellComponent,
+    canActivate: [AuthUserGuard]
   },
   {
     path: 'users',
-    loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
+    loadChildren: () => import('./modules/users/users.module')
+      .then(m => m.UsersModule),
+    canActivate: [AuthUserGuard]
   },
   {
     path: 'cars',
-    loadChildren: () => import('./modules/cars/cars.module').then(m => m.CarsModule)
+    loadChildren: () => import('./modules/cars/cars.module')
+      .then(m => m.CarsModule),
+    canActivate: [AuthUserGuard]
   },
   {
     path: 'user/edit/:id',
     component: UserEditShellComponent,
-    canDeactivate: [LeaveCreateFormGuard]
+    canDeactivate: [LeaveCreateFormGuard],
+    canActivate: [AuthUserGuard]
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   },
 ];
 
