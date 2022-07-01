@@ -39,8 +39,6 @@ export class RegistrationFormComponent implements OnInit {
   submit() {
     this.isSubmittedForm = true;
     this.isPasswordsMatch = !this.passwordsMatchError;
-    console.log(this);
-    console.log(this.registrationForm);
     
     if (this.registrationForm.valid && this.isPasswordsMatch) {
       const userName = this.registrationForm.value.userName;

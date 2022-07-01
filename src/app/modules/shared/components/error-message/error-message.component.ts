@@ -17,42 +17,42 @@ export class ErrorMessageComponent implements OnInit {
 
   getError(): string {
     if (this.form) {
-      return this.getFormError(this.form);     
+      return this.getFormError(this.form);
     } else if (this.control) {
-      return this.getControlError(this.control);     
+      return this.getControlError(this.control);
     }
 
     return '';
   }
 
   getFormError(form: FormGroup): string {
-    
+
     if (form.status === 'INVALID' && form.errors) {
       const arrayErr = Object.keys(form.errors)
-      if(arrayErr.length >= 1){
+      if (arrayErr.length >= 1) {
         for (let prop in form.errors) {
-          console.log('return = ', this.getErrorMessage(prop, form.errors[prop]));          
           return this.getErrorMessage(prop, form.errors[prop])
         }
       }
     }
-    console.log(form);          
+
     return ''
   }
 
   getControlError(control: FormControl): string {
     if (control.errors) {
       const arrayErr = Object.keys(control.errors)
-      if(arrayErr.length >= 1){
+      if (arrayErr.length >= 1) {
         for (let prop in control.errors) {
           return this.getErrorMessage(prop, control.errors[prop])
         }
       }
     }
+
     return ''
   }
 
-  getErrorMessage(prop, value){
+  getErrorMessage(prop, value) {
     const config = {
       'required': 'This field is required',
       'email': 'Incorrect email',
@@ -65,9 +65,6 @@ export class ErrorMessageComponent implements OnInit {
       'mismatch': 'Field values do not match',
     }
 
-    console.log(config[prop]);
-    
-
     return config[prop]
-  }  
+  }
 }
