@@ -1,0 +1,29 @@
+<div class="login-wrapper">
+    <form class="login-form" [formGroup]="loginForm">
+        <mat-form-field class="username" appearance="fill">
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="Enter your name" name="userName" formControlName="userName"
+                [(ngModel)]="userName">
+            <mat-error class="control-error">
+                <app-error-message [control]="this.loginForm.controls['userName']"></app-error-message>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="password" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" value="" name="password" formControlName="password"
+                type="password" [(ngModel)]="password">
+            <mat-error class="control-error">
+                <app-error-message [control]="this.loginForm.controls['password']"></app-error-message>
+            </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="isFormSubmitted && !isAuthenticationUser" class="error">Username and/or password not found</div>
+
+        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    </form>
+
+    <div class="register">
+        <div class="text">Don’t have an account?</div>
+        <button mat-stroked-button (click)="goToRegistrationPage()">Register now</button>
+    </div>
+</div>

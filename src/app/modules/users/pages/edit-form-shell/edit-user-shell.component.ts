@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CanDeactivatePage } from 'src/app/core/guards/leave-create-form.guard';
+import { AuthenticationService } from 'src/app/modules/shared/services/authentication.service';
 import { AddressesComponent } from '../../components/addresses/addresses.component';
 import { CreateUserComponent } from '../../components/user-form/user-form.component';
 import { IUser } from '../../interfaces/IUser';
@@ -27,6 +28,7 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
   private createUserShellComponent!: CreateUserShellComponent;
 
   public title: string = 'Edit user';
+  public userName: string = '';
   public editedUserForm: FormGroup = new FormGroup({});
   public user$!: Observable<IUser | undefined>;
   public isInvalidForm: boolean = false;
@@ -39,7 +41,9 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
     private _route: ActivatedRoute,
     private _usersService: UsersService,
     public dialog: MatDialog,
-  ) {
+    private authService: AuthenticationService,
+  ) { 
+    this.userName = authService.getCurrentUserName();
     this.editedUserForm = _formBuilder.group({});
   }
 

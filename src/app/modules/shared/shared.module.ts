@@ -11,12 +11,14 @@ import { MatListModule } from '@angular/material/list';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
     CardComponent,
     SearchFieldComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorMessageComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   ],
   exports: [
     CardComponent,
+    ErrorMessageComponent,
     SearchFieldComponent
   ]
 })

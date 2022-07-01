@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAuthUsers } from '../../auth/interfaces/IAuthUsers';
+import { IAuthUsers } from '../../authenticate/interfaces/IAuthUsers'; 
 
 @Injectable({
   providedIn: 'root'

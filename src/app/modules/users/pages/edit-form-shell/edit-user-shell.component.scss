@@ -1,3 +1,13 @@
-.edit-shell, .app-user-form {
-    text-align: center;
+.edit-shell,
+.app-user-form {
+  text-align: center;
+}
+
+.user-name {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #ff4500;
+  font-weight: bold;
+  font-size: 22px;
 }

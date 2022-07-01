@@ -9,28 +9,24 @@ import { MaterialModule } from 'src/material.module';
 import { HeaderComponent } from './modules/shared/components/header/header.component';
 import { UsersModule } from './modules/users/users.module';
 import { CarsModule } from './modules/cars/cars.module';
+import { AuthenticateModule } from './modules/authenticate/authenticate.module'; 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { RegistrationFormComponent } from './modules/auth/registration-form/registration-form.component';
-import { LoginFormComponent } from './modules/auth/login-form/login-form.component';
-import { HomePageComponent } from './modules/auth/home-page/home-page.component';
 import { AuthUserGuard } from './core/guards/auth-user.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RegistrationFormComponent,
-    LoginFormComponent,
-    HomePageComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     CarsModule,
+    AuthenticateModule,
     HttpClientModule,
     FormsModule,
     MaterialModule,

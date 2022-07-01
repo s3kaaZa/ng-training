@@ -17,6 +17,7 @@ export class RegistrationFormComponent implements OnInit {
   public confirmPass: string = "";
   public registrationForm!: FormGroup;
   public isSubmittedForm: boolean = false;
+  public isPasswordsMatch: boolean = true;
 
   constructor(
     private authService: AuthenticationService,
@@ -25,8 +26,8 @@ export class RegistrationFormComponent implements OnInit {
   ) {
     this.registrationForm = formBuilder.group({
       userName: ['', [Validators.required]],
-      pass: ['', [Validators.required]],
-      confirmPass: ['', [Validators.required]]
+      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
+      confirmPass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
     })
 
     this.registrationForm.setValidators(confirmPassValidator())
@@ -37,8 +38,11 @@ export class RegistrationFormComponent implements OnInit {
 
   submit() {
     this.isSubmittedForm = true;
+    this.isPasswordsMatch = !this.passwordsMatchError;
+    console.log(this);
+    console.log(this.registrationForm);
     
-    if (this.registrationForm.valid) {
+    if (this.registrationForm.valid && this.isPasswordsMatch) {
       const userName = this.registrationForm.value.userName;
       const pass = this.registrationForm.value.pass;
 
@@ -54,14 +58,11 @@ export class RegistrationFormComponent implements OnInit {
     this.confirmPass = "";
   }
 
-  get passwordMatchError() {
-    //console.log(this.registrationForm.getError('mismatch'))
-    //console.log(this.registrationForm.get('confirmPass'));
-    //console.log(this.registrationForm.get('confirmPass')?.untouched);
-    
+  get passwordsMatchError() {
     return (
       this.registrationForm.getError('mismatch') &&
-      this.registrationForm.get('confirmPassword')?.untouched
+      this.registrationForm.get('pass')?.touched &&
+      this.registrationForm.get('confirmPass')?.touched
     );
   }
 

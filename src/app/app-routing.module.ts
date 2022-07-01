@@ -5,9 +5,9 @@ import { CreateUserShellComponent } from './modules/users/pages/create-form-shel
 //import { CarsComponent } from './modules/cars/components/cars/cars.component';
 import { UserEditShellComponent } from './modules/users/pages/edit-form-shell/edit-user-shell.component';
 import { LeaveCreateFormGuard } from './core/guards/leave-create-form.guard';
-import { LoginFormComponent } from './modules/auth/login-form/login-form.component';
-import { RegistrationFormComponent } from './modules/auth/registration-form/registration-form.component';
-import { HomePageComponent } from './modules/auth/home-page/home-page.component';
+import { LoginFormComponent } from './modules/authenticate/login-form/login-form.component';
+import { RegistrationFormComponent } from './modules/authenticate/registration-form/registration-form.component';
+import { HomePageComponent } from './modules/authenticate/home-page/home-page.component';
 import { PageNotFoundComponent } from './modules/shared/components/page-not-found/page-not-found.component';
 import { AuthUserGuard } from './core/guards/auth-user.guard';
 
