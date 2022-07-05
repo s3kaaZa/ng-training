@@ -31,6 +31,5 @@ export class PreviewUserShellComponent implements OnInit {
        user => this.user = user
       )    
     });
-    console.log(this.user);
   }
 }

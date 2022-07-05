@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs';
 import { ErrorMessageComponent } from '../../shared/components/error-message/error-message.component';
 import { AuthenticationService } from '../../shared/services/authentication.service';

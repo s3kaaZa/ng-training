@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, CanActivateChild } from '@angular/router';
 import { AuthenticationService } from 'src/app/modules/shared/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthUserGuard implements CanActivate {
+export class AuthUserGuard implements CanActivate, CanActivateChild {
   isAuthenticationUser: boolean = false;
 
   constructor(
@@ -14,9 +13,11 @@ export class AuthUserGuard implements CanActivate {
   ) {
     this.isAuthenticationUser = authService.getCurrentUserName() ? true : false;
   }
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): boolean {
+    return this.isAuthenticationUser;
+  }
+
+  canActivateChild(): boolean {
     return this.isAuthenticationUser;
   }
   

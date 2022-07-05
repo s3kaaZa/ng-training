@@ -14,7 +14,7 @@ import { AuthenticateModule } from './modules/authenticate/authenticate.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { AuthUserGuard } from './core/guards/auth-user.guard';
+import { AuthUserGuard } from './modules/core/guards/auth-user.guard';
 
 @NgModule({
   declarations: [
@@ -25,13 +25,11 @@ import { AuthUserGuard } from './core/guards/auth-user.guard';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    CarsModule,
     AuthenticateModule,
     HttpClientModule,
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
-    UsersModule,
   ],
   providers: [
     AuthUserGuard

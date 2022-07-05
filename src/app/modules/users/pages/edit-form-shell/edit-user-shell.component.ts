@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CanDeactivatePage } from 'src/app/core/guards/leave-create-form.guard';
+import { CanDeactivatePage } from 'src/app/modules/core/guards/leave-create-form.guard';
 import { AuthenticationService } from 'src/app/modules/shared/services/authentication.service';
 import { AddressesComponent } from '../../components/addresses/addresses.component';
 import { CreateUserComponent } from '../../components/user-form/user-form.component';

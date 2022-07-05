@@ -1,7 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthUserGuard } from 'src/app/core/guards/auth-user.guard';
-import { LeaveCreateFormGuard } from 'src/app/core/guards/leave-create-form.guard';
+import { LeaveCreateFormGuard } from '../core/guards/leave-create-form.guard';
 import { PreviewUserComponent } from './components/preview-user/preview-user.component';
 import { UsersComponent } from './components/users/users.component';
 import { CreateUserShellComponent } from './pages/create-form-shell/create-user-shell.component';

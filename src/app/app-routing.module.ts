@@ -4,7 +4,7 @@ import { LoginFormComponent } from './modules/authenticate/login-form/login-form
 import { RegistrationFormComponent } from './modules/authenticate/registration-form/registration-form.component';
 import { HomePageComponent } from './modules/authenticate/home-page/home-page.component';
 import { PageNotFoundComponent } from './modules/shared/components/page-not-found/page-not-found.component';
-import { AuthUserGuard } from './core/guards/auth-user.guard';
+import { AuthUserGuard } from './modules/core/guards/auth-user.guard';
 
 const routes: Routes = [
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
 
   {
     path: '',
-    canActivate: [AuthUserGuard],
+    canActivateChild: [AuthUserGuard],
     children: [
       {
         path: 'users',
