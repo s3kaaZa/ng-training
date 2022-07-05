@@ -12,7 +12,6 @@ import { AuthenticationService } from 'src/app/modules/shared/services/authentic
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  userName: string = '';
   inputChanged!: string;
   users: IUser[] = [];
   foundUsers: IUser[] | undefined = undefined;
@@ -29,9 +28,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   constructor(
     private usersService: UsersService,
     private requestService: RequestService,
-    private authService: AuthenticationService,
   ) { 
-    this.userName = authService.getCurrentUserName();
   }
 
   ngOnInit(): void {

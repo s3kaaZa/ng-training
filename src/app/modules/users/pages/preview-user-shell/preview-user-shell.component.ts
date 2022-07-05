@@ -20,9 +20,7 @@ export class PreviewUserShellComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private usersService: UsersService,
-    private authService: AuthenticationService,
   ) { 
-    this.userName = authService.getCurrentUserName();
   }
 
   ngOnInit(): void {

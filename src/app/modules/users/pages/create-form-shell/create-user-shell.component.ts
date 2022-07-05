@@ -10,7 +10,6 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./create-user-shell.component.scss']
 })
 export class CreateUserShellComponent implements OnInit {
-  userName: string = '';
   title: string = 'Create user';
   createUserForm: FormGroup = new FormGroup({});
   isInvalidForm: boolean = false;
@@ -18,10 +17,7 @@ export class CreateUserShellComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UsersService,
-    private authService: AuthenticationService,
-  ) { 
-    this.userName = authService.getCurrentUserName();
-  }
+  ) { }
 
   ngOnInit(): void { }
 

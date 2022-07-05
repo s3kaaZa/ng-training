@@ -15,13 +15,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthUserGuard } from './core/guards/auth-user.guard';
-//import { AgePipe } from './pipes/age.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    //AgePipe,
   ],
   imports: [
     AppRoutingModule,

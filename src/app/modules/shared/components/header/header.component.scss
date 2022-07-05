@@ -1,9 +1,33 @@
 nav {
   background-color: #00000012;
+  height: 55px;
+
+  .un-auth-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    font-size: 20px;
+    font-weight: 500;
+    color: red;
+  }
+
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   button {
     margin: .5rem 2rem;
     border: 1px #000 dashed;
     text-align: center;
+  }
+
+  .user-name {
+    padding-right: 1rem;
+    color: #ff4500;
+    font-weight: bold;
+    font-size: 22px;
   }
 }

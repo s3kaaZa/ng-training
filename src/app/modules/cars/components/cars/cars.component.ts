@@ -7,9 +7,6 @@ import { AuthenticationService } from 'src/app/modules/shared/services/authentic
   styleUrls: ['./cars.component.scss']
 })
 export class CarsComponent {
-  userName: string = '';
 
-  constructor(private authService: AuthenticationService) { 
-    this.userName = authService.getCurrentUserName();
-  }
+  constructor() { }
 }

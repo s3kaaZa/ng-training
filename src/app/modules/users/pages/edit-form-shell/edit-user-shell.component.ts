@@ -28,7 +28,6 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
   private createUserShellComponent!: CreateUserShellComponent;
 
   public title: string = 'Edit user';
-  public userName: string = '';
   public editedUserForm: FormGroup = new FormGroup({});
   public user$!: Observable<IUser | undefined>;
   public isInvalidForm: boolean = false;
@@ -41,9 +40,7 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
     private route: ActivatedRoute,
     private usersService: UsersService,
     public dialog: MatDialog,
-    private authService: AuthenticationService,
   ) { 
-    this.userName = authService.getCurrentUserName();
     this.editedUserForm = formBuilder.group({});
   }
 

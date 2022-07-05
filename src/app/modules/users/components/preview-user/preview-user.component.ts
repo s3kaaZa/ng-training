@@ -17,14 +17,7 @@ export class PreviewUserComponent implements OnInit {
   public userId: string = '';
   public userInfo: IUser;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private usersService: UsersService,
-    private authService: AuthenticationService,
-  ) { 
-    this.userName = authService.getCurrentUserName();    
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

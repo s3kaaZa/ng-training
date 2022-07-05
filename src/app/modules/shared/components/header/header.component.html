@@ -1,5 +1,11 @@
 <nav>
-    <button id="create" mat-button color="primary" routerLink="/users/add" routerLinkActive="activebutton">Create User</button>
-    <button id="users" #users mat-raised-button color="accent" routerLink="/users" routerLinkActive="activebutton">Users</button>
-    <button id="cars" mat-raised-button color="warn" routerLink="/cars" routerLinkActive="activebutton">Cars</button>
+    <div class="un-auth-message" *ngIf="!userName">You are not an authenticated user</div>
+    <div class="button-container" *ngIf="userName">
+        <div class="button-wrapper">
+            <button id="create" mat-button color="primary" routerLink="/users/add" routerLinkActive="activebutton">Create User</button>
+            <button id="users" #users mat-raised-button color="accent" routerLink="/users" routerLinkActive="activebutton">Users</button>
+            <button id="cars" mat-raised-button color="warn" routerLink="/cars" routerLinkActive="activebutton">Cars</button>
+        </div>
+        <div class="user-name">{{ userName }}</div>
+    </div>
 </nav>

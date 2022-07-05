@@ -32,20 +32,6 @@ export class LoginFormComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        console.log(`Navigation Start to "${event.url}"`)
-      }
-
-      if (event instanceof NavigationCancel) {
-        console.log(`The Guard interrupted the transition to "${event.url}"`)
-      }
-
-      if (event instanceof NavigationEnd) {
-        console.log(`Navigation End to "${event.url}"`)
-      }
-    })
-
     this.loginForm.valueChanges
       .pipe(
         takeWhile(() => this.isComponentActive)
