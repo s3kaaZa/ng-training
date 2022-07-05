@@ -1,11 +1,23 @@
 <mat-tab-group animationDuration="800ms">
-    <mat-tab label="Location">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">location_city</mat-icon>
+            Location
+        </ng-template>
         <app-preview-user-location [user]="user$ | async"></app-preview-user-location>
     </mat-tab>
-    <mat-tab label="Personal Info">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">settings_accessibility</mat-icon>
+            Personal
+        </ng-template>
         <app-preview-user-personal [user]="user$ | async"></app-preview-user-personal>
     </mat-tab>
-    <mat-tab label="Contacts">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">import_contacts</mat-icon>
+            Contacts
+        </ng-template>
         <app-preview-user-location [user]="user$ | async"></app-preview-user-location>
     </mat-tab>
 </mat-tab-group>

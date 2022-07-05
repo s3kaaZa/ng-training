@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LeaveCreateFormGuard } from '../core/guards/leave-create-form.guard';
-import { PreviewUserComponent } from './components/preview-user/preview-user.component';
 import { UsersComponent } from './components/users/users.component';
 import { CreateUserShellComponent } from './pages/create-form-shell/create-user-shell.component';
 import { UserEditShellComponent } from './pages/edit-form-shell/edit-user-shell.component';
@@ -24,7 +23,7 @@ const routes: Routes = [
   {
     path: 'preview/:id',
     component: PreviewUserShellComponent,
-    children: [
+/*     children: [
       {
         path: 'contacts',
         component: PreviewUserComponent,
@@ -38,7 +37,7 @@ const routes: Routes = [
         component: PreviewUserComponent,
       },
     ]
-  }
+ */  }
 ];
 
 @NgModule({

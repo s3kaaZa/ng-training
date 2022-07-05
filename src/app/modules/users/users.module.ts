@@ -11,7 +11,6 @@ import { AddressComponent } from './components/address-form/address-form.compone
 import { UserEditShellComponent } from './pages/edit-form-shell/edit-user-shell.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './components/users/users.component';
-import { PreviewUserComponent } from './components/preview-user/preview-user.component';
 import { PreviewUserShellComponent } from './pages/preview-user-shell/preview-user-shell.component';
 import { FullNamePipe } from 'src/app/pipes/full-name.pipe';
 import { AgePipe } from 'src/app/pipes/age.pipe';
@@ -28,7 +27,6 @@ import { PreviewUserPersonalComponent } from './components/preview-user-personal
     AddressesComponent,
     AddressComponent,
     UserEditShellComponent,
-    PreviewUserComponent,
     PreviewUserShellComponent,
     FullNamePipe,
     AgePipe,
