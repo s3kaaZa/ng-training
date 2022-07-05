@@ -15,6 +15,9 @@ import { PreviewUserComponent } from './components/preview-user/preview-user.com
 import { PreviewUserShellComponent } from './pages/preview-user-shell/preview-user-shell.component';
 import { FullNamePipe } from 'src/app/pipes/full-name.pipe';
 import { AgePipe } from 'src/app/pipes/age.pipe';
+import { PreviewUserLocationComponent } from './components/preview-user-location/preview-user-location.component';
+import { PreviewUserContactsComponent } from './components/preview-user-contacts/preview-user-contacts.component';
+import { PreviewUserPersonalComponent } from './components/preview-user-personal/preview-user-personal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { AgePipe } from 'src/app/pipes/age.pipe';
     PreviewUserComponent,
     PreviewUserShellComponent,
     FullNamePipe,
-    AgePipe
+    AgePipe,
+    PreviewUserLocationComponent,
+    PreviewUserContactsComponent,
+    PreviewUserPersonalComponent
   ],
   imports: [
     CommonModule,

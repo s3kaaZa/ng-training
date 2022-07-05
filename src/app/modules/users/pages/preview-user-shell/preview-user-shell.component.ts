@@ -12,10 +12,7 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./preview-user-shell.component.scss']
 })
 export class PreviewUserShellComponent implements OnInit {
-  public userName: string = '';
-  public userId: string = '';
   public user$: Observable<IUser | undefined>;
-  public user: IUser;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,11 +22,11 @@ export class PreviewUserShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((data) => {
-      this.userId = data['id'];
-      this.user$ = this.usersService.getUserById(this.userId);
-      this.user$.subscribe(
-       user => this.user = user
-      )    
+      const userId = data['id'];
+
+      this.user$ = this.usersService.getUserById(userId);
+      console.log(this.user$);
+      
     });
   }
 }
