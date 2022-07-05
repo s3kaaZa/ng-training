@@ -3,12 +3,25 @@
 
   .app-card {
     text-align-last: left;
+
+    .mat-card-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 200px;
+    }
   }
 
   .mat-list-item {
     text-align: left;
 
-    .user-male, .user-female {
+    .user-male,
+    .user-female {
       margin-left: 0.5rem;
       background-repeat: no-repeat;
       background-size: contain;
@@ -19,7 +32,7 @@
     .user-male {
       background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/2d/Male-s%C3%ADmbolo.svg);
     }
-    
+
     .user-female {
       background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/63/FemalePink.png);
     }
@@ -27,12 +40,12 @@
 }
 
 .favorite-wrapper {
-    width: 325px;
+  width: 325px;
 
-    .favorite-title {
-        font-size: 20px;
-        font-weight: 500;
-        margin: 1rem;
-        text-align: center;
-    }
+  .favorite-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 1rem;
+    text-align: center;
+  }
 }

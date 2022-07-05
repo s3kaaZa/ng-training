@@ -2,6 +2,9 @@
     <mat-card-header>
         <mat-card-title>
             <ng-content select=".title"></ng-content>
+            <button mat-icon-button aria-label="preview" (click)="previewUser()">
+                <mat-icon>preview</mat-icon>
+            </button>    
         </mat-card-title>
     </mat-card-header>
 

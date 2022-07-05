@@ -15,6 +15,7 @@ export class CardComponent implements OnInit {
   @Output() sendExportUser = new EventEmitter();
   @Output() sendSaveUser = new EventEmitter();
   @Output() sendOnlyFirst = new EventEmitter();
+  @Output() sendPreview = new EventEmitter();
 
   constructor() { }
 
@@ -40,5 +41,9 @@ export class CardComponent implements OnInit {
 
   sendOnlyFirstRequest() {
     this.sendOnlyFirst.emit();
+  }
+
+  previewUser() {
+    this.sendPreview.emit();
   }
 }

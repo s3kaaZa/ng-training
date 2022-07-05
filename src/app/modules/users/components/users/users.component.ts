@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.users = this.usersService.getLockalUsers();
+    this.users = this.usersService.getLocalUsers();
 
     if (!this.users.length) this.getUsers();
 

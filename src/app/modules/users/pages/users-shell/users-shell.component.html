@@ -2,15 +2,11 @@
   <mat-sidenav-container>
     <div class="users">
       <ng-container *ngFor="let user of users">
-        <app-card class="app-card" 
-          [imageUrl]="user.imageUrl" 
-          [isLike]="isLike" 
-          (sendToggleLike)="toggleLike(user)" 
-          (sendEditUser)="editUser(user)"
-          (sendExportUser)="refreshExportCounter()"
-          (sendSaveUser)="refreshSaveCounter()"
-          (sendOnlyFirst)="refreshOnlyFirstCounter()">
-          <div class="title">{{ user.firstName + ' ' + user.lastName }}</div>
+        <app-card class="app-card" [imageUrl]="user.imageUrl" [isLike]="isLike" (sendToggleLike)="toggleLike(user)"
+          (sendEditUser)="editUser(user)" (sendExportUser)="refreshExportCounter()"
+          (sendSaveUser)="refreshSaveCounter()" (sendOnlyFirst)="refreshOnlyFirstCounter()" (sendPreview)="previewUser(user)">
+          <div class="title">{{ user | fullName }}</div>
+          <!-- <div class="title">{{ user.firstName + ' ' + user.lastName }}</div> -->
           <div class="cardContent">
             <ng-container *ngIf="user.hasOwnProperty('id')">
               <mat-list-item>ID: {{ user.id }}</mat-list-item>
@@ -35,12 +31,13 @@
               <mat-divider></mat-divider>
             </ng-container>
             <ng-container *ngIf="user.hasOwnProperty('age')">
-              <mat-list-item>Age: {{ user.age }}</mat-list-item>
+              <mat-list-item>Age: {{ user.age | age }}</mat-list-item>
             </ng-container>
             <ng-container *ngFor="let address of user.addresses">
               <mat-divider></mat-divider>
               <span *ngIf="address.city">
-                <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
+                <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}
+                </mat-list-item>
               </span>
               <span *ngIf="!address.city">
                 <mat-list-item>Address: {{ address.addressLine}}</mat-list-item>
@@ -75,12 +72,13 @@
               <ng-container *ngFor="let address of user.addresses">
                 <mat-divider></mat-divider>
                 <span *ngIf="address.city">
-                  <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}</mat-list-item>
+                  <mat-list-item>Address: {{ address.addressLine + ' ' + address.city + ' ' + address.zip}}
+                  </mat-list-item>
                 </span>
                 <span *ngIf="!address.city">
                   <mat-list-item>Address: {{ address.addressLine }}</mat-list-item>
                 </span>
-              </ng-container>  
+              </ng-container>
             </div>
           </app-card>
         </ng-container>

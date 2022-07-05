@@ -18,7 +18,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     CardComponent,
     SearchFieldComponent,
     PageNotFoundComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,

@@ -63,7 +63,7 @@ export class LoginFormComponent implements OnInit {
 
     if (this.isAuthenticationUser) {
       this.isAuthError = false;
-      this.clear();
+      this.loginForm.reset();
       this.router.navigateByUrl('home');
     } else {
       this.isAuthError = true;

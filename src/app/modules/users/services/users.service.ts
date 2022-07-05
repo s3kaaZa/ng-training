@@ -21,7 +21,6 @@ export class UsersService {
     constructor(
         private favoriteService: FavoriteService,
         private httpService: HttpService,
-        private http: HttpClient,
     ) { }
 
     public getUsers(page: number, results: number): Subscription {
@@ -55,7 +54,7 @@ export class UsersService {
         }
     }
 
-    public getLockalUsers() {
+    public getLocalUsers() {
         return this.users;
     }
 

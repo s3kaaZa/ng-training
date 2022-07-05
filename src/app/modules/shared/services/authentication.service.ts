@@ -7,7 +7,10 @@ import { IAuthUsers } from '../../authenticate/interfaces/IAuthUsers';
 export class AuthenticationService {
   currentUserName: string = '';
 
-  authenticatedUsers: IAuthUsers[] = [];
+  authenticatedUsers: IAuthUsers[] = [{
+    userName: 'userName', 
+    pass: 'password'
+  }];
   constructor() { }
 
   saveNewUser(userName: string, pass: string) {
@@ -21,7 +24,13 @@ export class AuthenticationService {
   }
 
   authenticationUser(userName: string, password: string): IAuthUsers[] | null {
-    return this.authenticatedUsers.filter((user: IAuthUsers) => user.userName === userName && user.pass === password)
+    const authenticateUser = this.authenticatedUsers.filter((user) => user.userName === userName && user.pass === password);
+
+    if (authenticateUser) {
+      this.currentUserName = authenticateUser[0].userName;
+    }
+
+    return authenticateUser;
   }
 
   getCurrentUserName(): string {

@@ -33,24 +33,24 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
   public user$!: Observable<IUser | undefined>;
   public isInvalidForm: boolean = false;
   public isFormSubmitted: boolean = false;
-  private _userId!: string;
+  private userId!: string;
 
   constructor(
-    _formBuilder: FormBuilder,
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _usersService: UsersService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private usersService: UsersService,
     public dialog: MatDialog,
     private authService: AuthenticationService,
   ) { 
     this.userName = authService.getCurrentUserName();
-    this.editedUserForm = _formBuilder.group({});
+    this.editedUserForm = formBuilder.group({});
   }
 
   ngOnInit(): void {    
-    this._route.params.subscribe((data) => {
-      this._userId = data['id'];
-      this.user$ = this._usersService.getUserById(this._userId)
+    this.route.params.subscribe((data) => {
+      this.userId = data['id'];
+      this.user$ = this.usersService.getUserById(this.userId)
     });
   }
 
@@ -58,8 +58,8 @@ export class UserEditShellComponent implements OnInit, CanDeactivatePage, AfterC
 
   updateUserData(): void {
     this.isFormSubmitted = true;
-    this._usersService.updateUser(this._userId, this.userForm.userForm.value, this.addressesForm.addressesArray.value);
-    this._router.navigate(["/users"]);
+    this.usersService.updateUser(this.userId, this.userForm.userForm.value, this.addressesForm.addressesArray.value);
+    this.router.navigate(["/users"]);
   }
 
   hasUnsavedData(): boolean | null {

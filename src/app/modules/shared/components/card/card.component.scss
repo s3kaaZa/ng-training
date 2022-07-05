@@ -3,6 +3,12 @@
   width: 260px;
   margin: .5rem 1rem;
 
+  .mat-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .mat-list-item {
     font-size: 13px;
   }
