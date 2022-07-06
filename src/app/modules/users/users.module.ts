@@ -17,6 +17,8 @@ import { AgePipe } from 'src/app/pipes/age.pipe';
 import { PreviewUserLocationComponent } from './components/preview-user-location/preview-user-location.component';
 import { PreviewUserContactsComponent } from './components/preview-user-contacts/preview-user-contacts.component';
 import { PreviewUserPersonalComponent } from './components/preview-user-personal/preview-user-personal.component';
+import { UsersTableLocalComponent } from './components/users-table-local/users-table-local.component';
+import { UsersTableServerComponent } from './components/users-table-server/users-table-server.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { PreviewUserPersonalComponent } from './components/preview-user-personal
     AgePipe,
     PreviewUserLocationComponent,
     PreviewUserContactsComponent,
-    PreviewUserPersonalComponent
+    PreviewUserPersonalComponent,
+    UsersTableLocalComponent,
+    UsersTableServerComponent
   ],
   imports: [
     CommonModule,

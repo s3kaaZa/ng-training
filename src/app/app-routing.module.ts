@@ -9,7 +9,7 @@ import { AuthUserGuard } from './modules/core/guards/auth-user.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'users/table-without-server-pagination',
     pathMatch: 'full',
   },
 
@@ -34,7 +34,7 @@ const routes: Routes = [
 
   {
     path: '',
-    canActivateChild: [AuthUserGuard],
+    //canActivateChild: [AuthUserGuard],
     children: [
       {
         path: 'users',

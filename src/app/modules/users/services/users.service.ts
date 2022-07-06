@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/IUser';
 import { FavoriteService } from '../../shared/services/favorite.service';
 import { HttpService } from '../../shared/services/http.service';

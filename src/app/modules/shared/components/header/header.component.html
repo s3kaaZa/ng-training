@@ -5,6 +5,8 @@
             <button id="create" mat-button color="primary" routerLink="/users/add" routerLinkActive="activebutton">Create User</button>
             <button id="users" #users mat-raised-button color="accent" routerLink="/users" routerLinkActive="activebutton">Users</button>
             <button id="cars" mat-raised-button color="warn" routerLink="/cars" routerLinkActive="activebutton">Cars</button>
+            <button id="cars" mat-raised-button color="warn" routerLink="users/table-without-server-pagination" routerLinkActive="activebutton">Table1</button>
+            <button id="cars" mat-raised-button color="warn" routerLink="users/table-with-server-pagination" routerLinkActive="activebutton">Table2</button>
         </div>
         <div class="user-name">{{ userName }}</div>
     </div>
