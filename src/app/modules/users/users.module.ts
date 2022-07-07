@@ -19,6 +19,7 @@ import { PreviewUserContactsComponent } from './components/preview-user-contacts
 import { PreviewUserPersonalComponent } from './components/preview-user-personal/preview-user-personal.component';
 import { UsersTableLocalComponent } from './components/users-table-local/users-table-local.component';
 import { UsersTableServerComponent } from './components/users-table-server/users-table-server.component';
+import { FullAddressPipe } from 'src/app/pipes/full-address.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UsersTableServerComponent } from './components/users-table-server/users
     UserEditShellComponent,
     PreviewUserShellComponent,
     FullNamePipe,
+    FullAddressPipe,
     AgePipe,
     PreviewUserLocationComponent,
     PreviewUserContactsComponent,

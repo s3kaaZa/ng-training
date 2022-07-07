@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -31,29 +31,40 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './users-table-local.component.html',
   styleUrls: ['./users-table-local.component.scss']
 })
-export class UsersTableLocalComponent implements AfterViewInit {
+export class UsersTableLocalComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild(MatSort) sort: MatSort;
 
   //@Input() users: IUser[];
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['name', 'email', 'age', 'gender', 'address'];
   users: IUser[];
+  dataSource: MatTableDataSource<IUser>;
 
   constructor(
     private liveAnnouncer: LiveAnnouncer,
     private usersService: UsersService,
   ) { 
-    this.usersService.getUsers(0, 64);
+    this.usersService.getUsers(0, 64).subscribe()
   }
 
   ngOnInit(): void {
-    this.users = this.usersService.getLocalUsers();
-    
+    this.usersService
+      .getUsers(0, 64)
+      .subscribe(
+        (users: IUser[]) => {
+          console.log(users);
+          
+          this.dataSource = new MatTableDataSource(users)
+        }
+    )
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    //this.dataSource.sort = this.sort;
   }
 
   /** Announce the change in sort state for assistive technology. */

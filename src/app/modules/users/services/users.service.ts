@@ -22,17 +22,19 @@ export class UsersService {
         private httpService: HttpService,
     ) { }
 
-    public getUsers(page: number, results: number): Subscription {
+    public getUsers(page: number, results: number): Observable<any> {
         this.users.length = 0;
         
         return this.httpService.get(page, results, null).pipe(
             take(1),
-            map((userDTOs: IRemoteUser[]) => {               
-                userDTOs.map((user: IRemoteUser) => {                    
-                    this.users.push(this.mapUserDTOtoUser(user));
-                })
+            map((userDTOs: IRemoteUser[]) => { 
+                
+                return userDTOs.map((user: IRemoteUser) => {
+                    return this.mapUserDTOtoUser(user)
+                }) 
+                console.log(userDTOs);
             })
-        ).subscribe()
+        )
     }
 
     private mapUserDTOtoUser(userDTO: IRemoteUser): IUser {
