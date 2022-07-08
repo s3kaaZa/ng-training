@@ -23,22 +23,24 @@ import { FullAddressPipe } from 'src/app/pipes/full-address.pipe';
 
 @NgModule({
   declarations: [
-    UsersComponent,
-    UsersShellComponent,
+    // components
+    AddressComponent,
+    AddressesComponent,
     CreateUserComponent,
     CreateUserShellComponent,
-    AddressesComponent,
-    AddressComponent,
-    UserEditShellComponent,
+    PreviewUserContactsComponent,
+    PreviewUserLocationComponent,
+    PreviewUserPersonalComponent,
     PreviewUserShellComponent,
+    UserEditShellComponent,
+    UsersComponent,
+    UsersShellComponent,
+    UsersTableLocalComponent,
+    UsersTableServerComponent,
+    // pipes
+    AgePipe,
     FullNamePipe,
     FullAddressPipe,
-    AgePipe,
-    PreviewUserLocationComponent,
-    PreviewUserContactsComponent,
-    PreviewUserPersonalComponent,
-    UsersTableLocalComponent,
-    UsersTableServerComponent
   ],
   imports: [
     CommonModule,

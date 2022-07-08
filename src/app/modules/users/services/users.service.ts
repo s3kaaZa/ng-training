@@ -22,7 +22,7 @@ export class UsersService {
         private httpService: HttpService,
     ) { }
 
-    public getUsers(page: number, results: number): Observable<any> {
+    public getUsers(page: number, results: number): Observable<IUser[]> {
         this.users.length = 0;
         
         return this.httpService.get(page, results, null).pipe(
