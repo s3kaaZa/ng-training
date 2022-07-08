@@ -23,7 +23,7 @@ export class HttpService {
     let path;
 
     if (Number.isInteger(page) && Number.isInteger(results)) {
-      path = `?page=${page ? page + 1 : ''}&results=${results}${endPath}`;
+      path = `?page=${++page}&results=${results}${endPath}`;
     } else {
       path = `?id=${id}${endPath}`;
     }

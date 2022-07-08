@@ -7,7 +7,7 @@ import { IUser } from '../modules/users/interfaces/IUser';
 export class FullNamePipe implements PipeTransform {
 
   transform(user: IUser): string {
-    return `${user.firstName} ${user.lastName}`;
+    return user ? `${user.firstName} ${user.lastName}` : '';
   }
 
 }

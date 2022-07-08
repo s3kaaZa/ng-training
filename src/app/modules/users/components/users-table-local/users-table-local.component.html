@@ -1,32 +1,39 @@
-<!-- {{ users[0].id}} -->
-
-<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
-
+<table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
-      <td mat-cell *matCellDef="let user"> {{ user | fullName }} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
+        <td mat-cell *matCellDef="let user"> {{ user | fullName }} </td><!-- {{ user | fullName }} -->
     </ng-container>
+
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-      <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by email">Email</th>
+        <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
     </ng-container>
+
     <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
-      <td mat-cell *matCellDef="let user"> {{ user.age }} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age">Age</th>
+        <td mat-cell *matCellDef="let user"> {{ user.age }} </td>
     </ng-container>
+
     <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
-      <td mat-cell *matCellDef="let user"> {{ user.gender ? 'Male' : 'Female' }} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender" disabled="true">
+            Gender</th>
+        <td mat-cell *matCellDef="let user"> {{ user.gender ? 'Male' : 'Female' }} </td>
     </ng-container>
+
     <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-      <td mat-cell *matCellDef="let user"> {{ user.addresses | fullAddress }} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address">Address</th>
+        <td mat-cell *matCellDef="let user"> {{ user.addresses | fullAddress }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
-   
-  </table>
 
-<button (click)="logThis()">this</button>
+</table>
+
+<mat-paginator 
+    [length]="tableLength" 
+    [pageSize]="10" 
+    [pageSizeOptions]="[10, 15, 20]" 
+    aria-label="Select page of users">
+</mat-paginator>

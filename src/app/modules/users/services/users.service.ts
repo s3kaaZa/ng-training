@@ -5,7 +5,7 @@ import { HttpService } from '../../shared/services/http.service';
 import { Favorite } from '../../shared/enums/favorite';
 import { ICreateUser } from '../interfaces/ICreateUser';
 import { IAddress } from '../interfaces/IAddress';
-import { delay, map, Observable, of, Subscription, take } from 'rxjs';
+import { delay, map, Observable, of, take } from 'rxjs';
 import { IRemoteUser } from '../interfaces/IRemoteUser';
 
 @Injectable({
@@ -32,7 +32,6 @@ export class UsersService {
                 return userDTOs.map((user: IRemoteUser) => {
                     return this.mapUserDTOtoUser(user)
                 }) 
-                console.log(userDTOs);
             })
         )
     }
