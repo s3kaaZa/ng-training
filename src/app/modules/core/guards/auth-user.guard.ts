@@ -11,14 +11,17 @@ export class AuthUserGuard implements CanActivate, CanActivateChild {
   constructor(
     authService: AuthenticationService
   ) {
-    this.isAuthenticationUser = authService.getCurrentUserName() ? true : false;
+    //this.isAuthenticationUser = authService.getCurrentUserName() ? true : false;
+    this.isAuthenticationUser = true;
   }
   canActivate(): boolean {
-    return this.isAuthenticationUser;
+    //return this.isAuthenticationUser;
+    return true;
   }
 
   canActivateChild(): boolean {
-    return this.isAuthenticationUser;
+    //return this.isAuthenticationUser;
+    return true;
   }
   
 }

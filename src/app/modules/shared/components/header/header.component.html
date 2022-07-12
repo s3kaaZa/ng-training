@@ -1,4 +1,23 @@
-<nav>
+<nav class="header">
+    <div class="logo">
+        <img class="logo__img" src="https://icons-for-free.com/iconfiles/png/32/line+version+dragonfly-1319964671944695822.png" />
+        <div class="logo__name" [style.background-color]="color">s3kaaZa</div>
+    </div>
+    <div class="buttons-container">
+        <button id="create" [ngClass]="buttons['users/add'].isActive ? 'buttons-container__button_active' : 'buttons-container__button'" routerLink="/users/add" routerLinkActive="activebutton">Create User</button>
+        <button id="users" [ngClass]="buttons['users'].isActive ? 'buttons-container__button_active' : 'buttons-container__button'" routerLink="/users" routerLinkActive="activebutton">Users</button>
+        <button id="cars" [ngClass]="buttons['cars'].isActive ? 'buttons-container__button_active' : 'buttons-container__button'" routerLink="/cars" routerLinkActive="activebutton">Cars</button>
+        <button id="table-client" [ngClass]="buttons['users/table-without-server-pagination'].isActive ? 'buttons-container__button_active' : 'buttons-container__button'" routerLink="users/table-without-server-pagination" routerLinkActive="activebutton">Table1</button>
+        <button id="table-server" [ngClass]="buttons['users/table-with-server-pagination'].isActive ? 'buttons-container__button_active' : 'buttons-container__button'" routerLink="users/table-with-server-pagination" routerLinkActive="activebutton">Table2</button>
+    </div>
+    <div class="auth-container">
+        <img class="auth-container__img" src="https://png.pngitem.com/pimgs/s/421-4213053_default-avatar-icon-hd-png-download.png" />        
+    </div>
+</nav>
+<button (click)="logThis()"></button>
+
+
+<!-- <nav>
     <div class="un-auth-message" *ngIf="!userName">You are not an authenticated user</div>
     <div class="button-container" *ngIf="userName">
         <div class="button-wrapper">
@@ -10,4 +29,4 @@
         </div>
         <div class="user-name">{{ userName }}</div>
     </div>
-</nav>
+</nav> -->

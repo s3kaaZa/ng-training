@@ -39,12 +39,12 @@ const routes: Routes = [
   {
     path: 'table-without-server-pagination',
     component: UsersTableLocalComponent,
-    canDeactivate: [LeaveCreateFormGuard],
+    //canDeactivate: [LeaveCreateFormGuard],
   },
   {
     path: 'table-with-server-pagination',
     component: UsersTableServerComponent,
-    canDeactivate: [LeaveCreateFormGuard],
+    //canDeactivate: [LeaveCreateFormGuard],
   },
 ];
 

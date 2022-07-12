@@ -32,7 +32,8 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.users = this.usersService.getLocalUsers();
+    this.usersService.getUsers(this.pageIndex, this.pageSize)
+      .subscribe((users: IUser[]) => this.users = users);
 
     if (!this.users.length) this.getUsers();
 

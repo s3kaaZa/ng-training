@@ -9,7 +9,7 @@ import { AuthUserGuard } from './modules/core/guards/auth-user.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'users/table-without-server-pagination',
+    redirectTo: 'users',
     pathMatch: 'full',
   },
 

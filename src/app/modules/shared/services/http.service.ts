@@ -6,8 +6,6 @@ const baseApi = 'https://randomuser.me/api/';
 const includingFields = ['login','name','email','gender','dob','picture','location'];
 const seed = 'dfjgh3vgh34bh';
 const noInfo = true;
-//?page=${page + 1}&results=${results}&seed=qwer&inc=login,name,email,gender,dob,picture,location&noinfo
-//?id=341f-c7e6-45b7-bab0-af6de5a4582d&seed=qwer&inc=login,name,email,gender,dob,picture,location&noinfo
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +18,7 @@ export class HttpService {
 
   private getFullUrl(page: number | null, results: number | null, id: string | null): string {
     const endPath = `&seed=${seed}&inc=${includingFields.join(',')}${noInfo ? '&noinfo' : ''}`;
-    let path;
+    let path: string;
 
     if (Number.isInteger(page) && Number.isInteger(results)) {
       path = `?page=${++page}&results=${results}${endPath}`;

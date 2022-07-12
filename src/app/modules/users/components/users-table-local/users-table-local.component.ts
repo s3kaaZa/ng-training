@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from '../../services/users.service';
 import { IUser } from '../../interfaces/IUser';
@@ -12,10 +11,10 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./users-table-local.component.scss']
 })
 export class UsersTableLocalComponent {
-  tableLength: number = 128;
-  displayedColumns: string[] = ['name', 'email', 'age', 'gender', 'address'];
-  users: IUser[];
-  dataSource: MatTableDataSource<IUser>;
+  public tableLength: number = 128;
+  public displayedColumns: string[] = ['name', 'email', 'age', 'gender', 'address'];
+  public users: IUser[];
+  public dataSource: MatTableDataSource<IUser>;
   
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
